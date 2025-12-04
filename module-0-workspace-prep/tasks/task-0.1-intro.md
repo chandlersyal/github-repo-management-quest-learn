@@ -170,11 +170,11 @@ Try these commands in Copilot Chat:
 Try these commands in Copilot Chat:
 
 ```
-#content-audit @workspace Analyze the learn-pr/wwl folder
+#content-audit Analyze the learn-pr/wwl/analyze-devops-continuous-planning-intergration folder
 ```
 
 ```
-#style-check Please review this file: learn-pr/wwl/describe-medallion-architecture/index.yml
+#style-check Please review this file: learn-pr/wwl/analyze-devops-continuous-planning-intergration/index.yml
 ```
 
 ## Step 3: Understanding the Results
