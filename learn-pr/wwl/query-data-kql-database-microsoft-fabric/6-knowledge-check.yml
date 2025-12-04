@@ -1,0 +1,51 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.query-data-kql-database-microsoft-fabric.knowledge-check
+title: Module assessment
+metadata:
+  hidden_question_numbers: ["D436630C_14","D436630C_34","D436630C_55","D436630C_75","D436630C_79","D436630C_83","D436630C_132","D436630C_140","D436630C_144","D436630C_164","D436630C_168","D436630C_172"]
+  ai_generated_module_assessment: true
+  title: Module assessment
+  description: "Knowledge check"
+  ms.date: 09/10/2025
+  author: theresa-i
+  ms.author: theresai
+  ms.topic: unit
+  module_assessment: true
+durationInMinutes: 3
+quiz:
+  title: "Check your knowledge"
+  questions:
+  - content: "What is an Eventhouse?"
+    choices:
+    - content: "A table that tracks data load events in a data warehouse."
+      isCorrect: false
+      explanation: "Incorrect. An Eventhouse isn't a table for tracking data warehouse load events."
+    - content: "A data store for real-time data in KQL databases."
+      isCorrect: true
+      explanation: "Correct. An Eventhouse is a data store in Microsoft Fabric in which real-time data is stored in KQL databases."
+    - content: "Another name for a lakehouse in Microsoft Fabric."
+      isCorrect: false
+      explanation: "Incorrect. An Eventhouse isn't another name for a lakehouse in Microsoft Fabric."
+  - content: "What is the purpose of using the `project` operator in KQL (Kusto Query Language) queries?"
+    choices:
+    - content: "To apply aggregations such as `count`, `sum`, and `avg`."
+      isCorrect: false
+      explanation: "Incorrect. This ability is the purpose of the `summarize` operator."
+    - content: "To specify which columns to include in your query output."
+      isCorrect: true
+      explanation: "Correct. Using the `project` operator allows you to reduce the amount of data being processed and improve query performance by specifying which columns to include in your query output."
+    - content: "To filter data based on specific conditions."
+      isCorrect: false
+      explanation: "Incorrect. This ability is the purpose of the `where` operator."
+  - content: "How can you create a reusable parameterized query for a KQL database?"
+    choices:
+    - content: "Create a stored function."
+      isCorrect: true
+      explanation: "Correct. A stored function provides a way to create a reusable parameterized KQL query."
+    - content: "Create a materialized view"
+      isCorrect: false
+      explanation: "Incorrect. A materialized view encapsulates summarized data from a table."
+    - content: "Write a custom Python script and save it as a Spark job definition"
+      isCorrect: false
+      explanation: "Incorrect. A Spark job definition doesn't create a parameterized KQL query."
+   

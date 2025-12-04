@@ -6,19 +6,20 @@
 
 ## Objective
 
-Identify specific content quality issues in the TechFlow documentation repository using GitHub Copilot's workspace-wide analysis capabilities.
+Identify specific content quality issues in the Microsoft Learn training modules repository using GitHub Copilot's workspace-wide analysis capabilities.
 
 ## Context
 
-Now that you understand the repository structure (from Task 1.1), it's time to dig deeper and find concrete quality issues. These could be broken links, outdated content, formatting problems, technical inaccuracies, or inconsistencies.
+Now that you understand the repository structure (from Task 1.1), it's time to dig deeper and find concrete quality issues. For Microsoft Learn content, these could be outdated `ms.date` values, inconsistent metadata, formatting problems, missing accessibility attributes, or content inconsistencies across modules.
 
-GitHub Copilot's @workspace agent can analyze all files simultaneously to find patterns and issues that would take hours to discover manually.
+GitHub Copilot's @workspace agent can analyze all YAML and markdown files simultaneously to find patterns and issues that would take hours to discover manually.
 
 ## Setup
 
-Ensure you're in the challenge repository with Copilot Chat open:
+Ensure you're in the learn-pr content with Copilot Chat open:
+
 ```bash
-cd scenario-1-inheritance/challenge-repo
+cd learn-pr/wwl
 code .
 ```
 
@@ -26,166 +27,184 @@ Press `Ctrl+Shift+I` (Cmd+Shift+I on Mac) to open Copilot Chat.
 
 ## Tasks
 
-### 1. Check for Broken Links
+### 1. Check for Broken Links and References
 
 **GitHub Copilot Chat Prompt:**
-```
-@workspace Analyze all markdown files and find broken links. Check for:
-1. Internal links to files that don't exist
-2. Internal links with incorrect paths
-3. Anchor links (#section) that don't match headings
-4. Suspicious external URLs (old domains, deprecated endpoints)
 
-List each broken link with:
-- File name and line number
-- The link text and URL
-- Why it's broken
+```text
+@workspace Analyze all markdown and YAML files for broken links and references:
+1. Internal links to files or includes that don't exist
+2. Image references in media/ folders that may be missing
+3. [!include[]] references that point to non-existent files
+4. Cross-module references that may be broken
+5. External URLs to learn.microsoft.com that may be outdated
+
+List each issue with:
+- Module folder and file name
+- The reference or link
+- Why it's potentially broken
 - Suggested fix
 ```
 
 **What Copilot Does:**
-- Scans all .md files in workspace
+
+- Scans all .yml and .md files in workspace
 - Checks if linked files exist
-- Validates anchor links against actual headings
+- Validates include references
 - Identifies potentially outdated external URLs
 
 **Follow-up Prompts:**
-```
-@workspace Show me the specific line in getting-started.md with the broken link
+
+```text
+@workspace Check if all the media files referenced in get-started-lakehouses actually exist
 ```
 
-```
-@workspace Are there any links to api-docs.md? That file doesn't exist.
+```text
+@workspace Are there any includes/ files that reference images not present in media/?
 ```
 
-**Deliverable:** Create `quality-audit.md` with a "Broken Links" section
+**Deliverable:** Create `quality-audit.md` with a "Broken Links & References" section
 
 ---
 
-### 2. Identify Outdated Content
+### 2. Identify Outdated Content and Metadata
 
 **GitHub Copilot Chat Prompt:**
-```
-@workspace Review all documentation for outdated information:
-1. Find old version numbers (look for Python 2.7, old package versions)
-2. Identify deprecated features or commands
-3. Find "Last updated" dates older than 12 months
-4. Spot references to old tool versions
-5. Find outdated API endpoints (v1 instead of v2)
+
+```text
+@workspace Review all module index.yml files for outdated information:
+1. Find ms.date values older than 6 months from today (December 2025)
+2. Identify deprecated ms.service values or product names
+3. Check for inconsistent author metadata patterns
+4. Find modules referencing features that may have changed
+5. Identify old iconUrl paths or badge references
 
 For each issue, provide:
-- File name
-- What's outdated
-- Current/recommended version
+- Module folder and file name
+- What's outdated (current value)
 - Why it matters
+- Suggested update
 ```
 
 **What Copilot Does:**
-- Searches for version patterns across files
-- Identifies deprecated technology references
-- Finds old dates and timestamps
-- Compares against current best practices
+
+- Searches for date patterns across index.yml files
+- Identifies older timestamps
+- Compares metadata patterns across modules
+- Flags inconsistencies
 
 **Follow-up Prompts:**
-```
-@workspace What's the current stable version of Python? Our docs mention 2.7.
+
+```text
+@workspace List all modules with ms.date values from 2023 or earlier
 ```
 
-```
-@workspace Find all references to "Python 2.7" in the repository
+```text
+@workspace What are all the different ms.service values used across modules?
 ```
 
-**Deliverable:** Add "Outdated Content" section to `quality-audit.md`
+**Deliverable:** Add "Outdated Content & Metadata" section to `quality-audit.md`
 
 ---
 
-### 3. Check Formatting Consistency
+### 3. Check YAML and Markdown Formatting Consistency
 
 **GitHub Copilot Chat Prompt:**
-```
-@workspace Analyze markdown formatting consistency across all files:
-1. Check heading hierarchy (proper H1→H2→H3, no skipped levels)
-2. Find code blocks without language specifiers
-3. Identify inconsistent list formatting (mixed bullets vs numbers)
-4. Check for inconsistent heading capitalization
-5. Find tables with alignment issues
 
-Present findings grouped by file with specific line numbers.
+```text
+@workspace Analyze formatting consistency across all modules:
+1. Check YAML syntax consistency (indentation, quoting, line breaks)
+2. Find markdown code blocks without language specifiers in includes/
+3. Identify inconsistent heading levels in markdown files
+4. Check for inconsistent metadata field ordering in YAML
+5. Find inconsistent use of single vs double quotes in YAML
+
+Present findings grouped by issue type with specific file examples.
 ```
 
 **What Copilot Does:**
-- Parses markdown structure in all files
+
+- Parses YAML and markdown structure in all files
 - Identifies formatting patterns and violations
-- Compares formatting across files
+- Compares formatting across modules
 - Highlights inconsistencies
 
 **Using Inline Copilot:**
+
 Once you find issues, you can fix them inline:
+
 1. Open the file with issues
 2. Select the problematic text
 3. Press `Ctrl+I` (Cmd+I on Mac)
-4. Ask: "Fix this markdown formatting to match best practices"
+4. Ask: "Fix this YAML formatting to match Microsoft Learn standards"
 
 **Deliverable:** Add "Formatting Issues" section to `quality-audit.md`
 
 ---
 
-### 4. Find Incomplete Content
+### 4. Find Incomplete Content and Missing Elements
 
 **GitHub Copilot Chat Prompt:**
-```
-@workspace Search all documentation files for incomplete content:
-1. TODO, FIXME, XXX markers
-2. Sections with headings but no content below
-3. Placeholder text like "Coming soon", "TBD", "[Description here]"
-4. Very short sections that seem incomplete (<50 words under a heading)
-5. Empty code blocks or missing examples
 
-List each with file, location, and what's missing.
+```text
+@workspace Search all module files for incomplete content:
+1. TODO, FIXME, or placeholder markers in content
+2. Knowledge check questions that seem incomplete or missing
+3. Exercises without proper instructions
+4. Module summaries that don't match learning objectives
+5. Modules missing expected units (intro, knowledge-check, summary)
+6. Empty or stub markdown files in includes/ folders
+
+List each with module, file location, and what's missing.
 ```
 
 **What Copilot Does:**
+
 - Searches for common placeholder patterns
-- Identifies structural issues (empty sections)
+- Identifies structural issues (missing units)
 - Flags suspiciously short content
-- Finds incomplete examples
+- Compares module structures for completeness
 
 **Follow-up Prompts:**
-```
-@workspace Show me the actual content of that TODO section in advanced-workflows.md
+
+```text
+@workspace Do all modules have a knowledge-check.yml or knowledge-check unit?
 ```
 
-```
-@workspace How many TODO markers are in the repository total?
+```text
+@workspace Which modules are missing summary units?
 ```
 
 **Deliverable:** Add "Incomplete Content" section to `quality-audit.md`
 
 ---
 
-### 5. Check for Contradictions and Inconsistencies
+### 5. Check for Content Contradictions and Inconsistencies
 
 **GitHub Copilot Chat Prompt:**
-```
-@workspace Compare content across documentation files to find contradictions:
-1. Conflicting instructions (file A says do X, file B says do Y)
-2. Inconsistent terminology (different names for same concept)
-3. Version mismatches (file A mentions v2.0, file B mentions v1.5)
-4. Different explanations of the same feature
-5. Inconsistent file or command references
 
-Focus on critical topics like installation, configuration, and API usage.
+```text
+@workspace Compare content across Microsoft Learn modules to find contradictions:
+1. Conflicting explanations of the same concept across modules
+2. Inconsistent terminology (different terms for same Fabric feature)
+3. Prerequisite modules that don't align
+4. Different recommended approaches for similar tasks
+5. Inconsistent UI references or navigation instructions
+
+Focus on Microsoft Fabric modules where concepts overlap.
 ```
 
 **What Copilot Does:**
-- Cross-references content across files
+
+- Cross-references content across modules
 - Identifies terminology variations
 - Finds conflicting information
-- Highlights version discrepancies
+- Highlights prerequisite mismatches
 
 **Advanced Prompt:**
-```
-@workspace Do installation.md and getting-started.md give the same installation instructions? Compare them.
+
+```text
+@workspace Compare how "lakehouse" is described in get-started-lakehouses vs describe-medallion-architecture - are they consistent?
 ```
 
 **Deliverable:** Add "Contradictions & Inconsistencies" section
@@ -195,26 +214,29 @@ Focus on critical topics like installation, configuration, and API usage.
 ### 6. Assess Accessibility and Clarity
 
 **GitHub Copilot Chat Prompt:**
-```
-@workspace Evaluate documentation for accessibility and clarity:
-1. Find images without alt text or descriptions
-2. Identify jargon used without explanation
-3. Find overly complex sentences (>30 words)
-4. Check if prerequisites are clearly stated
-5. Identify assumed knowledge that should be explained
+
+```text
+@workspace Evaluate Microsoft Learn modules for accessibility and clarity:
+1. Find images referenced without proper alt text descriptions
+2. Identify complex jargon used without explanation or definition
+3. Check if prerequisites in index.yml match actual requirements
+4. Find overly complex explanations that could be simplified
+5. Check for proper use of note/tip/warning callouts
 
 Provide specific examples with suggestions for improvement.
 ```
 
 **What Copilot Does:**
-- Checks image syntax for alt attributes
-- Identifies technical terms
-- Analyzes sentence complexity
-- Reviews prerequisite sections
 
-**For Specific Files:**
-```
-@workspace Is getting-started.md clear for beginners? What jargon needs explanation?
+- Checks image syntax for alt attributes
+- Identifies technical terms needing explanation
+- Reviews prerequisite alignment
+- Evaluates content complexity
+
+**For Specific Modules:**
+
+```text
+@workspace Is the introduction-to-copilot-fabric module clear for beginners? What concepts need more explanation?
 ```
 
 **Deliverable:** Add "Accessibility & Clarity" section
@@ -224,11 +246,12 @@ Provide specific examples with suggestions for improvement.
 ## Generate Summary Statistics
 
 **GitHub Copilot Chat Prompt:**
-```
-@workspace Based on all the issues we've found, generate summary statistics:
-- Total issues by category (broken links, outdated, formatting, etc.)
+
+```text
+@workspace Based on all the issues we've found in the Microsoft Learn modules, generate summary statistics:
+- Total issues by category (broken links, outdated dates, formatting, etc.)
 - Severity breakdown (critical, high, medium, low)
-- Files with most issues
+- Modules with most issues
 - Estimated time to fix each category
 - Quick wins (high impact, low effort)
 
@@ -244,72 +267,72 @@ Present as tables and bullet points.
 Your `quality-audit.md` should look like this:
 
 ```markdown
-# TechFlow Documentation Quality Audit
+# Microsoft Learn Content Quality Audit
 
 **Generated with:** GitHub Copilot @workspace
 **Audit Date:** [Date]
 **Audited By:** [Your Name]
 
 ## Executive Summary
-[Copilot-generated overview: X total issues found across Y files]
+[Copilot-generated overview: X total issues found across Y modules]
 
 ---
 
 ## Issues by Category
 
-### 1. Broken Links (Count: X)
+### 1. Broken Links & References (Count: X)
 
-| File | Line | Link Text | URL | Issue | Severity |
-|------|------|-----------|-----|-------|----------|
-| getting-started.md | 23 | download here | ./setup.md | File not found | High |
-| api-reference.md | 67 | API v1 | /api/v1/docs | Deprecated endpoint | Medium |
+| Module | File | Reference | Issue | Severity |
+|--------|------|-----------|-------|----------|
+| get-started-lakehouses | 3-work-lakehouse.yml | includes/missing-file.md | File not found | High |
+| administer-fabric | index.yml | ../deprecated-module | Module removed | Medium |
 
 **Copilot Notes:** [Any additional context from Copilot]
 
 ---
 
-### 2. Outdated Content (Count: X)
+### 2. Outdated Metadata (Count: X)
 
-| File | Line | Issue | Current Version | Severity |
-|------|------|-------|----------------|----------|
-| installation.md | 12 | References Python 2.7 | Python 3.12 | Critical |
-| quick-start.md | 34 | Old API endpoint v1 | v2 available | High |
+| Module | File | Issue | Current Value | Severity |
+|--------|------|-------|---------------|----------|
+| fabric-data-governance | index.yml | ms.date from 2023 | 03/15/2023 | Critical |
+| get-started-data-warehouse | index.yml | Old author format | wwlpublish | Medium |
 
 ---
 
 ### 3. Formatting Issues (Count: X)
 
-| File | Line | Issue | Example |
-|------|------|-------|---------|
-| api-reference.md | 45 | Skipped heading level | # H1 then ### H3 |
-| advanced-workflows.md | 89 | Code block no language | ``` without language spec |
+| Module | File | Issue | Example |
+|--------|------|-------|---------|
+| describe-medallion-architecture | includes/2-describe.md | Code block no language | ``` without python |
+| introduction-to-copilot-fabric | includes/3-copilot.md | Inconsistent heading levels | Jumps from H2 to H4 |
 
 ---
 
 ### 4. Incomplete Content (Count: X)
 
-| File | Section | Issue | Severity |
-|------|---------|-------|----------|
-| advanced-workflows.md | Deployment | Contains TODO marker | Medium |
-| troubleshooting.md | Common Errors | Section empty | High |
+| Module | Unit | Issue | Severity |
+|--------|------|-------|----------|
+| implement-fabric-data-agents | knowledge-check.yml | Only 2 questions | Medium |
+| explore-event-streams | includes/4-exercise.md | TODO marker present | High |
 
 ---
 
 ### 5. Contradictions & Inconsistencies (Count: X)
 
-| Files Affected | Issue | Severity |
-|----------------|-------|----------|
-| intro.md, installation.md | Different Python versions | High |
-| api-reference.md, quick-start.md | Different API endpoints | Critical |
+| Modules Affected | Issue | Severity |
+|-----------------|-------|----------|
+| get-started-lakehouses, describe-medallion | Different lakehouse definitions | High |
+| administer-fabric, manage-copilot-fabric | Inconsistent admin terminology | Medium |
 
 ---
 
 ### 6. Accessibility & Clarity (Count: X)
 
-| File | Issue | Suggestion | Severity |
-|------|-------|-----------|----------|
-| tutorial.md | Images missing alt text | Add descriptive alt="" | Medium |
-| advanced-workflows.md | Unexplained jargon: "orchestrator" | Add definition | Medium |
+| Module | Issue | Suggestion | Severity |
+|--------|-------|-----------|----------|
+| get-started-data-science | Images missing alt text | Add descriptive alt="" | Medium |
+| introduction-to-copilot-fabric | Jargon: "OneLake" unexplained | Add definition in intro | Medium |
 
 ---
 
@@ -323,14 +346,14 @@ Your `quality-audit.md` should look like this:
 - **Medium:** X (fix this month)
 - **Low:** X (backlog)
 
-### Issues by File
-1. api-reference.md: X issues
-2. installation.md: X issues
-3. getting-started.md: X issues
+### Issues by Module
+1. get-started-lakehouses: X issues
+2. administer-fabric: X issues
+3. describe-medallion-architecture: X issues
 
 ### Issues by Category
 - Broken links: X
-- Outdated content: X
+- Outdated metadata: X
 - Formatting: X
 - Incomplete: X
 - Contradictions: X
@@ -342,9 +365,9 @@ Your `quality-audit.md` should look like this:
 
 [Copilot-generated list of issues that can be fixed in <1 hour each]
 
-1. Fix typo in getting-started.md line 23 (5 min)
-2. Update Python version reference (10 min)
-3. Add language to code blocks (15 min)
+1. Update ms.date in 5 modules (30 min)
+2. Add language specifiers to code blocks (15 min)
+3. Fix broken include reference in get-started-lakehouses (10 min)
 
 **Total Quick Win Time:** ~2 hours
 **Impact:** Fixes 30% of high-severity issues
@@ -355,9 +378,9 @@ Your `quality-audit.md` should look like this:
 
 [Copilot's prioritized list of most critical fixes]
 
-1. **[Critical] Fix broken installation link** - blocks new users
-2. **[Critical] Update deprecated API endpoints** - code examples won't work
-3. **[High] Resolve contradictory Python version requirements** - confuses users
+1. **[Critical] Fix broken prerequisites** - blocks learner progression
+2. **[Critical] Update deprecated Fabric terminology** - confuses learners
+3. **[High] Align lakehouse definitions across modules** - ensures consistency
 
 ---
 
@@ -366,15 +389,15 @@ Your `quality-audit.md` should look like this:
 [Copilot-generated recommendations based on patterns found]
 
 **Process Improvements:**
-- Add automated link checking in CI/CD
+- Add automated YAML validation in CI/CD
 - Implement markdownlint for formatting
-- Create documentation review checklist
-- Set up spell checker
+- Create module review checklist
+- Set up quarterly freshness reviews
 
 **Immediate Actions:**
 - Fix all critical issues (estimated X hours)
-- Update all version references
-- Validate all code examples
+- Update all ms.date values
+- Validate all include references
 
 ---
 

@@ -1,6 +1,7 @@
 name: Setup Quest PR
 
 # This workflow creates a sample pull request for Scenario 2 (PR Review)
+# Designed for Microsoft Learn content management training
 # Run this manually when setting up the quest for a workshop or demo
 
 on:
@@ -37,121 +38,255 @@ jobs:
 
       - name: Make sample documentation changes
         run: |
-          # Create a sample change to demonstrate PR review
-          mkdir -p docs/sample-changes
+          # Create sample changes for Microsoft Learn Fabric Data Agents module
+          mkdir -p learn-pr/wwl/implement-fabric-data-agents/includes
 
-          # Add a new tutorial file
-          cat > docs/sample-changes/new-tutorial.md << 'END_OF_FILE'
-          # Advanced Integration Tutorial
-          
-          This tutorial shows you how to integrate TechFlow with external services.
-          
-          ## Prerequisites
-          - TechFlow 2.1.0 or later
-          - API key configured
-          - Basic Python knowledge
-          
-          ## Step 1: Setup Integration
-          
-          First, install the integration package:
-          
-          ```bash
-          pip install techflow-integrations
-          ```
-          
-          ## Step 2: Configure Connection
-          
-          Create a configuration file:
-          
+          # Add new unit content file for advanced scenarios
+          cat > learn-pr/wwl/implement-fabric-data-agents/includes/copilot-advanced-scenarios.md << 'END_OF_FILE'
+          Copilot for Microsoft Fabric data agents supports several advanced scenarios that extend beyond basic data retrieval. These capabilities enable more sophisticated interactions with your organizational data.
+
+          ## Multi-turn conversations
+
+          Data agents maintain context across multiple conversation turns, allowing users to refine their queries progressively:
+
+          1. User asks: "Show me sales data for Q4"
+          2. Agent returns Q4 sales summary
+          3. User follows up: "Now compare that to Q3"
+          4. Agent understands "that" refers to Q4 sales and provides comparison
+
+          This contextual awareness reduces the need for users to repeat information in each query.
+
+          ## Cross-source data correlation
+
+          When configured with access to multiple data sources, agents can correlate information across:
+
+          - OneLake lakehouses
+          - Data warehouses
+          - Semantic models
+          - External data connections
+
           ```python
-          from techflow import Client
-          from techflow.integrations import ServiceConnector
-          
-          client = Client(api_key='your_key')
-          connector = ServiceConnector(client)
+          # Example: Agent correlating customer data across sources
+          from fabric.dataagent import DataAgent
+
+          agent = DataAgent(workspace="sales-analytics")
+          response = agent.query(
+              "Compare customer satisfaction scores with purchase frequency"
+          )
           ```
-          
-          ## Step 3: Test Connection
-          
-          Verify the integration works:
-          
-          ```python
-          result = connector.test_connection()
-          print(result)
-          ```
-          
-          ## Common Issues
-          
-          ### Connection Timeout
-          If you see timeout errors, increase the timeout value:
-          
-          ```python
-          connector = ServiceConnector(client, timeout=60)
-          ```
-          
-          ### Authentication Failed
-          Make sure your API key has integration permissions.
-          
-          ## Next Steps
-          
-          - Try the error handling guide
-          - Explore advanced features
-          - Read the API reference
+
+          ## Automated insight generation
+
+          Data agents can proactively identify trends and anomalies in your data without explicit prompting. Configure this behavior in the agent settings:
+
+          | Setting | Description | Default |
+          |---------|-------------|---------|
+          | auto_insights | Enable automatic insight generation | False |
+          | insight_frequency | How often to scan for insights | Daily |
+          | anomaly_threshold | Sensitivity for anomaly detection | Medium |
+
+          ## Integration with Power BI
+
+          Data agents integrate seamlessly with Power BI reports and dashboards. Users can:
+
+          - Ask questions about visualized data
+          - Request drill-down analysis
+          - Generate natural language summaries of report pages
+
+          > [!NOTE]
+          > Power BI integration requires the workspace to have both Fabric capacity and Power BI Pro licensing.
           END_OF_FILE
 
-          # Modify an existing file (simulate update)
-          echo "" >> README.md
-          echo "## Recent Updates" >> README.md
-          echo "" >> README.md
-          echo "- Added advanced integration tutorial" >> README.md
-          echo "- Updated API documentation" >> README.md
+          # Add best practices content
+          cat > learn-pr/wwl/implement-fabric-data-agents/includes/copilot-best-practices.md << 'END_OF_FILE'
+          Follow these best practices when implementing Copilot data agents in your Microsoft Fabric environment to ensure optimal performance and user experience.
 
-          # Add a file with an intentional issue (for review practice)
-          cat > docs/sample-changes/quick-reference.md << 'END_OF_FILE'
-          # Quick Reference Guide
-          
-          ## Installation
-          
-          Requires Python 2.7 or later
-          
-          ## Basic Commands
-          
+          ## Data preparation
+
+          Proper data preparation is essential for effective data agent responses:
+
+          - **Use descriptive column names**: Agents work better with columns named "CustomerPurchaseDate" than "CPD"
+          - **Add data descriptions**: Document tables and columns in your semantic model
+          - **Maintain data quality**: Clean, consistent data produces more accurate responses
+
+          ## Security configuration
+
+          Configure appropriate security boundaries for your data agents:
+
+          1. Enable row-level security (RLS) on sensitive data
+          2. Use workspace roles to control agent access
+          3. Review audit logs regularly for unusual query patterns
+
+          ## Performance optimization
+
+          Optimize agent performance with these techniques:
+
+          ```kusto
+          // Use materialized views for frequently queried aggregations
+          .create materialized-view SalesSummary on SalesTable
+          {
+              SalesTable
+              | summarize TotalSales = sum(Amount) by Region, ProductCategory
+          }
           ```
-          techflow init
-          techflow start
-          techflow stop
+
+          ## Common mistakes to avoid
+
+          - Don't expose raw transactional tables directly to agents
+          - Avoid overly complex schemas with many joins
+          - Don't forget to test agent responses with sample queries
+
+          ## Monitoring and maintenance
+
+          Establish a regular maintenance schedule:
+
+          | Task | Frequency | Priority |
+          |------|-----------|----------|
+          | Review query logs | Weekly | High |
+          | Update data descriptions | Monthly | Medium |
+          | Test edge case queries | Quarterly | Medium |
+          | Refresh training data | As needed | High |
+          END_OF_FILE
+
+          # Add troubleshooting content (with intentional issues for review practice)
+          cat > learn-pr/wwl/implement-fabric-data-agents/includes/copilot-troubleshooting.md << 'END_OF_FILE'
+          When working with Fabric data agents, you may encounter various issues. This guide helps you diagnose and resolve common problems.
+
+          ## Agent not responding
+
+          If your data agent isn't responding to queries:
+
+          1. Verify Fabric capacity is running and not paused
+          2. Check that the agent is enabled in workspace setings
+          3. Confirm user has appropriate permissions
+          4. Review the agent activity log for errors
+
+          ## Incorrect or incomplete responses
+
+          When agent responses don't match expectations:
+
+          ### Check data freshness
+
+          Data agents query the most recent data avialable. If data seems outdated:
+
+          - Verify lakehouse data refresh completed
+          - Check semantic model refresh schedule
+          - Confirm data pipeline ran successfully
+
+          ### Improve query specificity
+
+          Vague queries produce vague responses. Instead of:
+          - "Show me the data" ❌
+          
+          Try:
+          - "Show me monthly sales totals for the North region in 2024" ✓
+
+          ## Performance issues
+
+          Slow response times often indicate:
+
+          | Symptom | Likely Cause | Solution |
+          |---------|--------------|----------|
+          | > 30s response | Large dataset scan | Add aggregation layer |
+          | Timeout errors | Complex joins | Simplify data model |
+          | Intermitent slowness | Capacity throttling | Review capacity metrics |
+
+          ## Error messages
+
+          Common error codes and their meanings:
+
           ```
-          
-          ## Configuration
-          
-          Edit the config file located at ~/techflow/config.yml
-          
-          ## Links
-          
-          - [Setup Guide](guides/legacy-setup.md)
-          - [API Docs](http://old-docs.example.com)
-          
-          ## Troubleshooting
-          
-          If you experiance issues, check the logs.
+          AGENT_001: Agent not initialized
+          Solution: Wait 2-3 minutes after agent creation
+
+          AGENT_002: Insufficient permissions  
+          Solution: Grant user 'Viewer' role or higher on workspace
+
+          AGENT_003: Data source unavailable
+          Solution: Check lakehouse/warehouse connectivity
+          ```
+
+          ## Getting help
+
+          If issues persist, gather diagnostic information:
+
+          1. Agent ID and workspace ID
+          2. Exact error message or unexpected behavior
+          3. Sample query that reproduces the issue
+          4. Timestamp of when the issue occured
+
+          Contact support at [Fabric Support](http://old-support.fabric.com/help).
+
+          > [!TIP]
+          > Enable verbose logging temporarily to capture detailed diagnostics for complex issues.
+          END_OF_FILE
+
+          # Update index.yml to add new units (with intentional YAML formatting issue)
+          cat > learn-pr/wwl/implement-fabric-data-agents/includes/updated-index-sample.yml << 'END_OF_FILE'
+          ### YamlMime:Module
+          uid: learn.wwl.implement-fabric-data-agents
+          metadata:
+            title: Implement Fabric data agents
+            description: Learn how to implement and manage data agents in Microsoft Fabric for enhanced data interaction.
+            ms.date: 04/15/2024
+            author: wwlpublish
+            ms.author: jameshom
+            ms.topic: module
+            ms.service: fabric
+          title: Implement Fabric data agents
+          summary: This module teaches you how to implement data agents in Microsoft Fabric, enabling natural language interactions with your organizational data through Copilot.
+          abstract: |
+            After completing this module, you'll be able to:
+            - Describe the purpose and capabilities of Fabric data agents
+            - Create and configure a data agent in a Fabric workspace
+            - Connect data sources to your data agent
+            - Test and refine agent responses
+            - Implement advanced scenarios and best practices
+            - Troubleshoot common data agent issues
+          prerequisites
+            - Basic understanding of Microsoft Fabric workspaces
+            - Familiarity with lakehouses and data warehouses
+            - Experience with Copilot in other Microsoft products
+          iconUrl: /learn/achievements/generic-badge.svg
+          levels:
+            - intermediate
+          roles:
+            - data-analyst
+            - data-engineer
+          products:
+            - fabric
+          units:
+            - learn.wwl.implement-fabric-data-agents.introduction
+            - learn.wwl.implement-fabric-data-agents.understand-data-agents
+            - learn.wwl.implement-fabric-data-agents.create-configure-agent
+            - learn.wwl.implement-fabric-data-agents.connect-data-sources
+            - learn.wwl.implement-fabric-data-agents.work-with-data-agents
+            - learn.wwl.implement-fabric-data-agents.advanced-scenarios
+            - learn.wwl.implement-fabric-data-agents.best-practices
+            - learn.wwl.implement-fabric-data-agents.troubleshooting
+            - learn.wwl.implement-fabric-data-agents.knowledge-check
+            - learn.wwl.implement-fabric-data-agents.summary
+          badge:
+            uid: learn.wwl.implement-fabric-data-agents.badge
           END_OF_FILE
 
       - name: Commit changes
         run: |
           git add .
-          git commit -m "Add new documentation and tutorials
+          git commit -m "Add advanced Copilot data agent content
 
-          This PR adds:
-          - New advanced integration tutorial
-          - Quick reference guide
-          - Updates to README
+          This PR adds comprehensive content to the implement-fabric-data-agents module:
 
-          Changes include:
-          - Step-by-step integration examples
-          - Common troubleshooting tips
-          - Updated navigation links
+          New content:
+          - Advanced scenarios unit (multi-turn, cross-source, auto-insights)
+          - Best practices unit (data prep, security, performance)
+          - Troubleshooting unit (common issues and solutions)
+          - Updated index.yml with new units
 
-          Closes #123"
+          Addresses learner feedback requesting more practical guidance for 
+          enterprise data agent implementations.
+
+          Related to content refresh initiative for Fabric Copilot modules."
 
       - name: Push branch
         run: |
@@ -169,64 +304,73 @@ jobs:
             const pr = await github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: '[Quest Sample] Add advanced integration tutorials',
+              title: '[Quest Sample] Add advanced Copilot data agent content',
               head: branchName,
               base: 'main',
               body: `## Description
 
-              This PR adds comprehensive integration documentation for TechFlow, including:
-
-              - New advanced integration tutorial
-              - Quick reference guide for common commands
-              - Updated README with recent changes
+              This PR adds comprehensive content to the \`implement-fabric-data-agents\` module, addressing learner feedback for more practical guidance on enterprise implementations.
 
               ## Changes Made
 
-              ### New Files
-              - \`docs/sample-changes/new-tutorial.md\` - Step-by-step integration guide
-              - \`docs/sample-changes/quick-reference.md\` - Quick command reference
+              ### New Content Files
+              | File | Description |
+              |------|-------------|
+              | \`copilot-advanced-scenarios.md\` | Multi-turn conversations, cross-source correlation, automated insights |
+              | \`copilot-best-practices.md\` | Data preparation, security config, performance optimization |
+              | \`copilot-troubleshooting.md\` | Common issues, error codes, diagnostic steps |
 
               ### Modified Files
-              - \`README.md\` - Added recent updates section
+              | File | Changes |
+              |------|---------|
+              | \`index.yml\` | Added three new units to module structure |
 
-              ## Testing
-              - [x] All code examples tested
-              - [x] Links verified
-              - [x] Spell checked
-              - [ ] Reviewed by documentation team
+              ## Content Review Checklist
+              - [x] Technical accuracy verified against current Fabric capabilities
+              - [x] Code samples tested in Fabric workspace
+              - [x] Screenshots captured from current UI (November 2024)
+              - [x] Accessibility: All images have descriptive alt text
+              - [ ] Terminology review: Consistent "Copilot for Microsoft Fabric" usage
+              - [ ] Link validation: All xrefs and external links verified
+              - [ ] Spell check completed
 
-              ## Screenshots
-              N/A - Documentation only
-
-              ## Notes for Reviewers
-
-              Please pay special attention to:
-              - Technical accuracy of integration examples
-              - Completeness of troubleshooting section
-              - Link validity
+              ## Module Impact
+              - **Current units**: 7
+              - **After merge**: 10 (3 new units added)
+              - **Estimated completion time change**: +15 minutes
 
               ## Related Issues
-              Closes #123
+              - Addresses feedback from Issue #45: "Need more troubleshooting guidance"
+              - Partial fix for Issue #38: "Enterprise scenarios not covered"
 
               ---
 
               **⚠️ This is a sample PR for Quest Scenario 2**
 
-              This PR intentionally includes some issues for review practice:
-              - Outdated Python version reference (Python 2.7)
-              - Broken link to legacy-setup.md
-              - Link to old domain (old-docs.example.com)
-              - Typo: "experiance" instead of "experience"
+              This PR intentionally includes issues for review practice:
+              
+              **YAML Issues:**
+              - Missing colon after \`prerequisites\` in index.yml (line 20)
+              - Outdated \`ms.date: 04/15/2024\`
+              
+              **Content Issues:**
+              - Typos: "avialable", "setings", "Intermitent", "occured"
+              - Broken link: \`http://old-support.fabric.com/help\`
+              - Inconsistent terminology: Mix of "Copilot" and "data agents"
+              
+              **Structural Issues:**
+              - Code sample uses deprecated \`fabric.dataagent\` import path
+              - Missing \`> [!IMPORTANT]\` callout for security section
 
               Use GitHub Copilot to:
-              1. Review this PR with @workspace
-              2. Identify the issues
-              3. Generate constructive feedback
-              4. Suggest fixes
+              1. Review the PR with @workspace
+              2. Identify content and technical issues
+              3. Validate YAML structure
+              4. Generate constructive feedback for the author
 
               ---
-              *This is a sample PR for Quest Scenario 2. Part of GitHub Copilot Repository Management Quest.*`,
-              labels: ['quest-sample', 'documentation']
+              *This is a sample PR for Quest Scenario 2. Part of GitHub Copilot Repository Management Quest for Microsoft Learn content.*`,
+              labels: ['quest-sample', 'documentation', 'fabric', 'copilot']
             });
 
             console.log('✅ Created sample PR #' + pr.data.number);
@@ -236,19 +380,22 @@ jobs:
         run: |
           echo "✅ Sample PR created for Quest Scenario 2"
           echo ""
-          echo "This PR demonstrates:"
-          echo "  - New documentation files"
-          echo "  - Updates to existing files"
-          echo "  - Intentional issues for review practice"
+          echo "This PR demonstrates Microsoft Learn content updates:"
+          echo "  - New unit content files (markdown)"
+          echo "  - YAML module structure updates"
+          echo "  - Fabric Copilot data agent documentation"
           echo ""
-          echo "Issues included for practice:"
-          echo "  - Outdated version reference (Python 2.7)"
-          echo "  - Broken internal link"
-          echo "  - Link to old domain"
-          echo "  - Typo in content"
+          echo "Intentional issues for review practice:"
+          echo "  - YAML syntax error (missing colon)"
+          echo "  - Outdated ms.date metadata"
+          echo "  - Multiple typos in content"
+          echo "  - Broken external link"
+          echo "  - Deprecated code import path"
+          echo "  - Terminology inconsistencies"
           echo ""
           echo "Participants can practice:"
-          echo "  - PR review with @workspace"
-          echo "  - Finding cross-file impacts"
-          echo "  - Generating feedback with Copilot"
-          echo "  - Creating fix suggestions"
+          echo "  - PR review with @workspace on Learn content"
+          echo "  - YAML validation and structure review"
+          echo "  - Content quality assessment"
+          echo "  - Finding cross-module impacts"
+          echo "  - Generating constructive feedback with Copilot"

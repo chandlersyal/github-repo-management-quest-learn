@@ -1,0 +1,13 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.use-apache-spark-work-files-lakehouse.exercise-spark
+title: Exercise - Analyze data with Apache Spark
+metadata:
+  title: Exercise - Analyze data with Apache Spark
+  description: "Exercise - Analyze data with Apache Spark"
+  ms.date: 05/22/2025
+  author: theresa-i
+  ms.author: theresai
+  ms.topic: unit
+durationInMinutes: 45
+content: |
+  [!include[](includes/7-exercise-spark.md)]

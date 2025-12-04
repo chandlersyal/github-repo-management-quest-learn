@@ -2,59 +2,70 @@
 
 ## Quest Overview
 
-Welcome to the **GitHub Copilot for Repository Management Quest** - an interactive learning experience designed for content developers who want to master GitHub Copilot's native features for repository management workflows. This quest simulates real-world scenarios that content teams face daily, from taking over unfamiliar repositories to managing complex pull requests and issue backlogs.
+Welcome to the **GitHub Copilot for Repository Management Quest** - an interactive learning experience designed for content developers who want to master GitHub Copilot's native features for repository management workflows. This quest simulates real-world scenarios using **real Microsoft Learn documentation**, covering common challenges like taking over unfamiliar repositories, triaging issue backlogs, and managing complex pull requests.
 
-**What makes this quest unique:** You'll learn to leverage GitHub Copilot's workspace agent, PR summarization, issue analysis, and automated code generation features - all within your natural GitHub workflow.
+**What makes this quest unique:** You'll work with actual Microsoft Fabric learning modules while mastering GitHub Copilot's workspace agent, issue analysis, PR summarization, and automated code generation features.
+
+## 🎯 Two-Part Lab Structure
+
+This quest is designed as **two 60-minute labs** that can be completed independently or as a full learning experience:
+
+| Lab | Duration | Focus | Scenarios |
+|-----|----------|-------|-----------|
+| **[Part 1: Fundamentals](part-1-fundamentals/README.md)** | 60 min | Core Copilot skills | Workspace setup + Scenarios 1-2 |
+| **[Part 2: Advanced](part-2-advanced/README.md)** | 60 min | Advanced automation | Custom agents + Scenarios 3-4 |
+
+**Start here:** Choose the lab that matches your experience level and time available!
 
 ## Learning Objectives
 
 By completing this quest, you will:
 
-1. **Master GitHub Copilot workspace exploration** - Use Copilot's @workspace agent to quickly understand unfamiliar repositories and documentation structures
-2. **Develop advanced PR review skills** - Leverage GitHub Copilot's PR summaries, review suggestions, and inline chat for efficient pull request reviews
-3. **Implement efficient issue management** - Use Copilot to analyze issues, suggest fixes, and even generate PRs automatically from issue descriptions
+1. **Master GitHub Copilot workspace exploration** - Use Copilot's @workspace agent to quickly understand unfamiliar repositories and Microsoft Learn documentation structures
+2. **Implement efficient issue management** - Use Copilot to analyze issues, categorize, prioritize, and suggest fixes
+3. **Develop advanced PR review skills** - Leverage GitHub Copilot's PR summaries, review suggestions, and inline chat for efficient pull request reviews
 4. **Create documentation standards** - Establish quality standards with Copilot-assisted reviews and automated checks
 5. **Build practical workflows** - Develop repeatable processes using GitHub Copilot's native capabilities
 
 ## Quest Structure
 
-This quest contains three progressive scenarios, each building on skills from the previous one:
+This quest uses **real Microsoft Learn modules** from the `learn-pr/wwl/` folder and contains a foundational module plus four progressive scenarios:
+
+### Module 0: Workspace Preparation
+**Duration:** 15-20 minutes | **Covered in:** Part 1 (intro) + Part 2 (advanced)
+
+Customize your GitHub Copilot workspace with agents and reusable prompts using examples from Microsoft Learn documentation.
+
+- **Part 1 covers:** Task 0.1 - Introduction to agents and prompts
+- **Part 2 covers:** Tasks 0.2-0.4 - Creating custom agents and prompt libraries
 
 ### Scenario 1: The Inheritance
-**Duration:** 30-45 minutes
-**Difficulty:** Beginner to Intermediate
+**Duration:** 25-30 minutes | **Covered in:** Part 1
 
-You've just been assigned to take over a documentation repository from a team member who left suddenly. The repository contains dozens of markdown files, some Python utilities, and no clear structure. Your mission: understand what you've inherited, identify issues, and create an actionable improvement plan.
+Take over an unfamiliar Microsoft Fabric documentation repository. Use Copilot to explore the module structure, identify issues, and create an improvement plan.
 
-**Tasks:**
-- 1.1: Explore and map the repository structure using GitHub Copilot's @workspace agent
-- 1.2: Identify outdated content, broken links, and inconsistencies with Copilot Chat
-- 1.3: Generate a comprehensive content audit report using Copilot
-- 1.4: Create documentation standards with Copilot's assistance
+**Content:** Microsoft Fabric modules including lakehouses, medallion architecture, and semantic models
 
-### Scenario 2: The Big Merge
-**Duration:** 45-60 minutes
-**Difficulty:** Intermediate
+### Scenario 2: The Backlog Battle
+**Duration:** 20-25 minutes | **Covered in:** Part 1
 
-A contributor has submitted a massive pull request touching 15+ markdown files across multiple documentation sections. The changes include new tutorials, updated guides, and restructured content. You need to review this PR efficiently, identify issues, and guide the contributor to success.
+Triage 12 open issues in a Microsoft Learn repository. Categorize, prioritize, identify duplicates, and create fix proposals.
 
-**Tasks:**
-- 2.1: Use GitHub Copilot's PR summary and review features for initial assessment
-- 2.2: Leverage Copilot inline suggestions to identify style and technical issues
-- 2.3: Use Copilot to draft constructive review comments and suggestions
-- 2.4: Validate cross-references with @workspace context awareness
+**Content:** Workflow-created issues covering broken images, outdated dates, accessibility, and more
 
-### Scenario 3: The Backlog Battle
-**Duration:** 45-60 minutes
-**Difficulty:** Intermediate to Advanced
+### Scenario 3: The Big Merge
+**Duration:** 25-30 minutes | **Covered in:** Part 2
 
-Your documentation repository has accumulated 25+ open issues over the past few months. They range from typo fixes to requests for new content, from bug reports to feature suggestions. Your challenge: triage this backlog efficiently and create a sustainable issue management process.
+Review a pull request adding new Copilot for Fabric documentation. Identify content issues, validate cross-references, and provide constructive feedback.
 
-**Tasks:**
-- 3.1: Use Copilot to bulk categorize and prioritize the issue backlog
-- 3.2: Leverage Copilot to identify duplicates and relationships between issues
-- 3.3: Generate issue templates with Copilot's assistance
-- 3.4: Use Copilot to draft responses and even create fix PRs directly from issues
+**Content:** Workflow-created PR with intentional issues to discover
+
+### Scenario 4: The Agent Arsenal
+**Duration:** 20-25 minutes | **Covered in:** Part 2
+
+Build a comprehensive agent ecosystem with specialized documentation agents that work together for enterprise-scale workflows.
+
+**Content:** Advanced agent patterns and workflow orchestration
 
 ## Prerequisites
 
@@ -85,56 +96,142 @@ This quest uses a **conceptual and interactive lab** format:
 1. **Install VS Code** - Download from https://code.visualstudio.com/
 2. **Install GitHub Copilot extension** - From VS Code marketplace
 3. **Activate GitHub Copilot** - Sign in with your GitHub account
-4. **Clone this repository**:
+4. **GitHub account** - Required for forking and running workflows
+
+### Repository Setup
+
+1. **Fork this repository** to your own GitHub account:
+   - Click the "Fork" button at the top-right of this repository
+   - Choose your account as the destination for the fork
+
+2. **Clone your fork** (replace `[your-username]` with your GitHub username):
    ```bash
-   git clone https://github.com/hrasheed-msft/github-repo-management-quest.git
+   git clone https://github.com/[your-username]/github-repo-management-quest.git
    cd github-repo-management-quest
    code .
    ```
 
+3. **Create sample content** by running the setup workflows:
+
+   **Option A: Using GitHub Web Interface (Recommended)**
+   - Go to your forked repository on GitHub
+   - Navigate to the **Actions** tab
+   - You'll see two workflows: "Setup Quest Issues" and "Setup Quest PR"
+   
+   **To create sample issues for Scenario 3:**
+   - Click on "Setup Quest Issues" workflow
+   - Click "Run workflow" button
+   - Select "scenario-3" from the dropdown
+   - Click the green "Run workflow" button
+   - Wait for the workflow to complete (creates 8 sample issues)
+
+   **To create sample PR for Scenario 2:**
+   - Click on "Setup Quest PR" workflow  
+   - Click "Run workflow" button
+   - Select your preferred PR size (small/medium/large)
+   - Click the green "Run workflow" button
+   - Wait for the workflow to complete (creates 1 sample pull request)
+
+   **Option B: Using GitHub CLI (if you have it installed)**
+   ```bash
+   # Create sample issues
+   gh workflow run setup-quest-issues.yml --field scenario=scenario-3
+
+   # Create sample PR
+   gh workflow run setup-quest-pr.yml --field pr_size=medium
+   ```
+
+4. **Verify setup**:
+   - Check the **Issues** tab - you should see 8 sample issues labeled "quest-sample"
+   - Check the **Pull requests** tab - you should see 1 sample PR labeled "quest-sample"
+
 ### Quest Workflow
 
-1. **Open VS Code** with this repository
+1. **Open VS Code** with your forked repository
 2. **Start with Scenario 1** in the `scenario-1-inheritance/` directory
 3. **Open Copilot Chat** (Ctrl+Shift+I or Cmd+Shift+I)
 4. **Follow task instructions** - use provided Copilot prompts
 5. **Complete each task** using GitHub Copilot features
-6. **Check solution guides** to see expected approaches
-7. **Progress through scenarios** at your own pace
+6. **Use your sample issues and PR** created by the workflows for Scenarios 2 & 3
+7. **Check solution guides** to see expected approaches
+8. **Progress through scenarios** at your own pace
+
+### Important Notes
+
+- **Scenario 1** uses the files in `scenario-1-inheritance/challenge-repo/` - no setup needed
+- **Scenario 2** requires the sample PR created by running "Setup Quest PR" workflow
+- **Scenario 3** requires the sample issues created by running "Setup Quest Issues" workflow
+- All sample content is labeled with "quest-sample" for easy identification
+- You can re-run the workflows anytime to create fresh sample content
+
+### Troubleshooting
+
+**Workflows not visible in Actions tab?**
+- Make sure you're looking at your forked repository, not the original
+- GitHub Actions should be enabled by default on forks
+
+**Workflow run failed?**
+- Check that your repository is public (required for GitHub Actions on free accounts)
+- Ensure you have the latest version by syncing your fork with the original repository
+
+**No sample issues or PRs created?**
+- Check the Actions tab for workflow run details and any error messages
+- Verify the workflows completed successfully (green checkmark)
+- Issues appear in the "Issues" tab, PRs appear in "Pull requests" tab
+
+**Need to start over?**
+- You can delete the sample issues and PR, then re-run the workflows
+- Or fork the repository again for a completely fresh start
 
 ## Repository Structure
 
-```
+```text
 github-repo-management-quest/
 ├── README.md (this file)
-├── scenario-1-inheritance/
-│   ├── README.md (scenario overview)
-│   ├── challenge-repo/ (the repository you'll work with)
-│   ├── tasks/ (individual task instructions)
-│   └── solutions/ (solution guides and examples)
-├── scenario-2-big-merge/
+├── part-1-fundamentals/
+│   └── README.md (60-minute lab: Module 0.1 + Scenarios 1-2)
+├── part-2-advanced/
+│   └── README.md (60-minute lab: Module 0.2-0.4 + Scenarios 3-4)
+├── learn-pr/
+│   └── wwl/ (Microsoft Learn modules - your working content)
+│       ├── get-started-lakehouses/
+│       ├── describe-medallion-architecture/
+│       ├── design-scalable-semantic-models/
+│       └── ... (50+ Microsoft Fabric modules)
+├── module-0-workspace-prep/
 │   ├── README.md
-│   ├── challenge-repo/
-│   ├── pr-content/ (the pull request files)
+│   └── tasks/ (agent and prompt configuration)
+├── scenario-1-inheritance/
+│   ├── README.md
+│   ├── challenge-repo/ (legacy content for exploration)
 │   ├── tasks/
 │   └── solutions/
-├── scenario-3-backlog-battle/
+├── scenario-2-backlog-battle/
 │   ├── README.md
-│   ├── challenge-repo/
-│   ├── issues/ (the backlog of issues)
+│   ├── issues/ (created by workflow)
+│   ├── tasks/
+│   └── solutions/
+├── scenario-3-big-merge/
+│   ├── README.md
+│   ├── pr-content/ (created by workflow)
+│   ├── tasks/
+│   └── solutions/
+├── scenario-4-agent-arsenal/
+│   ├── README.md
 │   ├── tasks/
 │   └── solutions/
 └── resources/
-    ├── copilot-prompts.md (GitHub Copilot prompts for common tasks)
-    ├── best-practices.md (content repository management tips)
-    └── copilot-features-guide.md (mastering Copilot features)
+    ├── copilot-prompts.md
+    ├── best-practices.md
+    └── copilot-features-guide.md
 ```
 
 ## Time Commitment
 
-- **Complete quest**: 2-3 hours
-- **Individual scenarios**: 30-60 minutes each
-- **Self-paced**: Work through scenarios on your own schedule
+- **Part 1 (Fundamentals)**: ~60 minutes
+- **Part 2 (Advanced)**: ~60 minutes
+- **Complete quest**: ~2 hours total
+- **Self-paced**: Complete parts independently on your own schedule
 - **Requires**: Active VS Code session with GitHub Copilot
 
 ## Skills You'll Gain
@@ -162,11 +259,21 @@ github-repo-management-quest/
 
 ## Next Steps
 
-Ready to begin? Head to [Scenario 1: The Inheritance](scenario-1-inheritance/README.md) to start your journey!
+Ready to begin? Choose your starting point:
+
+- 🚀 **[Part 1: Fundamentals](part-1-fundamentals/README.md)** - Start here if you're new to GitHub Copilot or want to learn the core skills
+- ⚡ **[Part 2: Advanced](part-2-advanced/README.md)** - Jump here if you're comfortable with Copilot basics and want advanced automation
+
+Or dive into individual scenarios:
+- [Scenario 1: The Inheritance](scenario-1-inheritance/README.md)
+- [Scenario 2: The Backlog Battle](scenario-2-backlog-battle/README.md)
+- [Scenario 3: The Big Merge](scenario-3-big-merge/README.md)
+- [Scenario 4: The Agent Arsenal](scenario-4-agent-arsenal/README.md)
 
 ---
 
-**Quest Version:** 1.0
-**Last Updated:** 2025-12-01
-**Estimated Completion Time:** 2-3 hours
+**Quest Version:** 2.0
+**Last Updated:** 2025-12-04
+**Content:** Microsoft Learn / Microsoft Fabric
+**Estimated Completion Time:** 2 hours (1 hour per part)
 **Difficulty Level:** Beginner to Advanced

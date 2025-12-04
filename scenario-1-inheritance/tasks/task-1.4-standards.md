@@ -6,17 +6,17 @@
 
 ## Objective
 
-Create comprehensive documentation standards using GitHub Copilot to prevent future quality issues and ensure consistency across the TechFlow repository.
+Create comprehensive documentation standards using GitHub Copilot to prevent future quality issues and ensure consistency across the Microsoft Learn training modules in the `learn-pr/wwl` repository.
 
 ## Context
 
-You've identified numerous issues in the repository, many of which could have been prevented with clear standards. GitHub Copilot can help you create professional standards documents by analyzing your audit findings and generating guidelines based on best practices.
+You've identified numerous issues in the Fabric training modules, many of which could have been prevented with clear standards. GitHub Copilot can help you create professional standards documents by analyzing your audit findings and generating guidelines based on Learn authoring best practices.
 
 This document will serve as:
-- A guide for contributors
-- A checklist for reviewers
-- The basis for automated quality checks
-- The foundation for your documentation culture
+- A guide for Learn content authors
+- A checklist for module reviewers
+- The basis for automated YAML and content validation
+- The foundation for your Learn content quality culture
 
 ## Setup
 
@@ -29,24 +29,24 @@ Open Copilot Chat: `Ctrl+Shift+I` (Cmd+Shift+I on Mac)
 
 **GitHub Copilot Chat Prompt:**
 ```
-@workspace Based on the formatting issues found in my audit:
+@workspace Based on the formatting issues found in my audit of the learn-pr/wwl modules:
 
 [Paste formatting issues from your audit]
 
-Create a "Markdown Formatting Standards" section for our documentation that includes:
-1. Heading hierarchy rules (proper H1→H2→H3 progression)
-2. Code block formatting (always use ``` with language specifiers)
-3. List formatting standards (when to use bullets vs numbers)
-4. Link formatting conventions (relative vs absolute paths)
-5. Table formatting guidelines
+Create a "Learn Module Formatting Standards" section for our documentation that includes:
+1. YAML metadata requirements (ms.date, author, ms.service fields)
+2. Module structure rules (proper index.yml to unit .yml to includes/*.md flow)
+3. Code block formatting (always use ``` with language specifiers like python, yaml, sql)
+4. Cross-reference link formatting (proper [!include[]] syntax)
+5. Image and media conventions (media/ folder structure, alt text requirements)
 
 For each rule provide:
 - The standard (what to do)
-- Why it matters (rationale)
+- Why it matters (rationale for Learn platform)
 - ✅ Good example
 - ❌ Bad example
 
-Format as markdown suitable for DOCUMENTATION_STANDARDS.md file.
+Format as markdown suitable for LEARN_MODULE_STANDARDS.md file.
 ```
 
 **What Copilot Does:**
@@ -68,20 +68,21 @@ Format as markdown suitable for DOCUMENTATION_STANDARDS.md file.
 
 **GitHub Copilot Chat Prompt:**
 ```
-@workspace Create templates for different documentation types based on best practices:
+@workspace Create templates for different Microsoft Learn module content types:
 
-1. Tutorial template (step-by-step learning)
-2. How-to Guide template (task-focused)
-3. API Reference template (technical specs)
-4. Conceptual Guide template (understanding)
+1. Module index.yml template (module metadata and unit listing)
+2. Learning unit .yml template (unit with knowledge check)
+3. Exercise unit .yml template (hands-on activity)
+4. Conceptual content template (includes/*.md understanding)
+5. Tutorial content template (includes/*.md step-by-step)
 
 For each template, define:
-- Required sections with descriptions
-- Optional sections
-- Example structure in markdown
+- Required YAML fields with descriptions
+- Required content sections
+- Example structure showing includes/ references
 - When to use this template
 
-Format as copy-paste ready markdown templates.
+Format as copy-paste ready templates following Learn authoring guidelines.
 ```
 
 **What Copilot Does:**
@@ -103,20 +104,21 @@ Format as copy-paste ready markdown templates.
 
 **GitHub Copilot Chat Prompt:**
 ```
-@workspace Based on quality issues from my audit, create enforceable quality requirements:
+@workspace Based on quality issues from my Learn modules audit, create enforceable quality requirements:
 
 [Reference your audit findings]
 
 Include standards for:
-1. Link checking (how often, what tools, automation)
-2. Technical accuracy (code examples must be tested, versions current)
-3. Images and assets (alt text required, size limits, formats)
-4. Accessibility (heading hierarchy, descriptive links, etc.)
+1. ms.date freshness (maximum age, update triggers, automation)
+2. Code example validation (PySpark/SQL examples must run in Fabric)
+3. Include file references (all [!include[]] paths must resolve)
+4. Images and media (alt text required, media/ folder organization, screenshot currency)
+5. Prerequisites accuracy (Fabric capacity requirements, access needs)
 
 Make each requirement:
-- Specific and measurable
-- Enforceable (manually or automatically)
-- Practical for contributors to follow
+- Specific and measurable for Learn publishing
+- Enforceable through build validation or review
+- Practical for content authors to follow
 
 Provide implementation guidance for each.
 ```
@@ -213,7 +215,11 @@ Make this practical with lots of examples.
 
 **Refine for Your Product:**
 ```
-@workspace Our product is called TechFlow. Add terminology standards specific to workflow automation tools.
+@workspace Our content covers Microsoft Fabric. Add terminology standards specific to:
+- Fabric workspaces, capacities, and lakehouses
+- Copilot for Fabric features
+- Medallion architecture (bronze, silver, gold)
+- Real-time analytics and KQL
 ```
 
 **Deliverable:** Add "Style and Voice Guidelines" section
@@ -313,28 +319,29 @@ Suggest improvements to make this a professional, usable standards document.
 
 ## Output Format
 
-Your `DOCUMENTATION_STANDARDS.md` should follow this structure (Copilot-generated):
+Your `LEARN_MODULE_STANDARDS.md` should follow this structure (Copilot-generated):
 
 ```markdown
-# TechFlow Documentation Standards
+# Microsoft Learn Module Standards
 
 **Created with:** GitHub Copilot @workspace
 **Version:** 1.0
 **Last Updated:** [Date]
-**Owner:** Documentation Team
+**Owner:** Learn Content Team
 
 ## Quick Reference
 
-[One-page checklist for contributors - print this!]
+[One-page checklist for content authors - print this!]
 
-**Before submitting documentation:**
-- [ ] Headings follow proper hierarchy (no skipped levels)
-- [ ] All code blocks have language specifiers
-- [ ] All links checked and working
-- [ ] Images have descriptive alt text
-- [ ] Spell checked
-- [ ] Reviewed by peer
-- [ ] Passes automated checks
+**Before submitting Learn module changes:**
+- [ ] index.yml has current ms.date and complete metadata
+- [ ] All unit .yml files reference valid includes/*.md files
+- [ ] All code blocks have language specifiers (python, yaml, sql, kusto)
+- [ ] All [!include[]] references resolve correctly
+- [ ] Images have descriptive alt text and are in media/ folder
+- [ ] ms.date updated to reflect actual content changes
+- [ ] Reviewed by peer content author
+- [ ] Passes Learn build validation
 
 **Most Important Rules:**
 1. Use relative paths for internal links

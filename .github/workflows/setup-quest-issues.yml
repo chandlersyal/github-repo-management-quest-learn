@@ -1,6 +1,7 @@
 name: Setup Quest Issues
 
 # This workflow creates sample issues for Scenario 3 (Issue Management)
+# Designed for Microsoft Learn content management training
 # Run this manually when setting up the quest for a workshop or demo
 
 on:
@@ -25,7 +26,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create Issue 1 - API Authentication Bug
+      - name: Create Issue 1 - Broken Image in Lakehouse Module
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -33,73 +34,72 @@ jobs:
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: '[Quest Sample] API key authentication failing',
+              title: '[Quest Sample] Broken image in get-started-lakehouses module',
               body: `## Issue Type
-              Bug
+              Content Bug - Broken Media
               
               ## Description
-              API key authentication is failing with error "Invalid API key" even though the key is correct.
-              
-              ## Steps to Reproduce
-              1. Set API key in config: \`api_key = "sk-1234..."\`
-              2. Run: \`techflow auth --test\`
-              3. See error
-              
-              ## Expected Behavior
-              Authentication should succeed with valid API key
-              
-              ## Actual Behavior
-              Getting "Invalid API key" error
-              
-              ## Environment
-              - OS: Windows 11
-              - Version: 2.1.0
-              - Python: 3.10.5
-              
-              ## Error Message
-              \`\`\`
-              ERROR: Authentication failed: Invalid API key
-              Status code: 401
-              \`\`\`
-              
-              ---
-              *This is a sample issue for Quest Scenario 3. Part of GitHub Copilot Repository Management Quest.*`,
-              labels: ['quest-sample', 'bug']
-            });
-
-      - name: Create Issue 2 - Typo in Documentation
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: '[Quest Sample] Typo in getting-started.md',
-              body: `## Issue Type
-              Documentation
-              
-              ## Description
-              There's a typo on line 12 of docs/getting-started.md
+              The image showing the lakehouse architecture diagram is not displaying in the published content. The alt text "lakehouse architecture overview" appears instead of the actual image.
               
               ## Location
-              \`docs/getting-started.md\` line 12
+              - **Module**: \`learn-pr/wwl/get-started-lakehouses\`
+              - **Unit**: \`2-explore-lakehouse.yml\`
+              - **Line**: Reference to \`../media/lakehouse-architecture.png\`
               
-              ## Current Text
-              "Users get a smooth experiance when installing"
+              ## Steps to Reproduce
+              1. Navigate to the "Explore Microsoft Fabric lakehouses" unit
+              2. Scroll to the architecture diagram section
+              3. Image shows alt text instead of actual image
               
-              ## Should Be
-              "Users get a smooth experience when installing"
+              ## Expected Behavior
+              The lakehouse architecture diagram should display correctly
               
-              ## Priority
-              Low - but affects first impression
+              ## Actual Behavior
+              Image returns 404 - file not found in media folder
+              
+              ## Suggested Fix
+              Check if the file exists in the media folder or if the path reference is incorrect.
+              
+              ---
+              *This is a sample issue for Quest Scenario 3. Part of GitHub Copilot Repository Management Quest for Microsoft Learn content.*`,
+              labels: ['quest-sample', 'bug', 'content', 'media']
+            });
+
+      - name: Create Issue 2 - Outdated ms.date Metadata
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '[Quest Sample] ms.date needs update in medallion-architecture module',
+              body: `## Issue Type
+              Metadata Update Required
+              
+              ## Description
+              The ms.date value in the medallion architecture module is outdated (showing 04/15/2024). This module has been updated but the metadata wasn't refreshed.
+              
+              ## Location
+              - **Module**: \`learn-pr/wwl/describe-medallion-architecture\`
+              - **File**: \`index.yml\`
+              - **Field**: \`ms.date: 04/15/2024\`
+              
+              ## Required Action
+              Update ms.date to reflect the current date when content was last reviewed/updated.
+              
+              ## Impact
+              Low - metadata only, but affects content freshness reporting
+              
+              ## Additional Context
+              This is part of a larger metadata refresh effort across all Fabric modules.
               
               ---
               *This is a sample issue for Quest Scenario 3. Perfect for testing automated fixes with GitHub Copilot!*`,
-              labels: ['quest-sample', 'docs', 'good-first-issue']
+              labels: ['quest-sample', 'metadata', 'good-first-issue']
             });
 
-      - name: Create Issue 3 - Broken Link
+      - name: Create Issue 3 - Broken Cross-Reference Link
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -107,31 +107,33 @@ jobs:
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: '[Quest Sample] Broken link in README',
+              title: '[Quest Sample] Broken xref link in data-warehouse module',
               body: `## Issue Type
-              Documentation
+              Content Bug - Broken Link
               
               ## Description
-              README.md has a broken link to old documentation site
+              Cross-reference link to OneLake documentation is broken. The xref points to a module that was renamed.
               
               ## Location
-              \`README.md\` line 45
+              - **Module**: \`learn-pr/wwl/get-started-data-warehouse\`
+              - **Unit**: \`3-understand-data-warehouse.yml\`
+              - **Line**: Contains broken xref
               
-              ## Current Link
-              \`http://old-docs.example.com/guide\`
+              ## Current Reference
+              \`[OneLake fundamentals](xref:learn.wwl.onelake-fundamentals)\`
               
-              ## Should Link To
-              \`https://docs.example.com/guide\`
+              ## Should Reference
+              \`[Introduction to OneLake](xref:learn.wwl.introduction-to-onelake)\`
               
               ## Problem
-              The old domain no longer exists (404 error)
+              The old module UID no longer exists, resulting in a broken link in published content.
               
               ---
-              *Sample issue for practicing Copilot automated fixes*`,
-              labels: ['quest-sample', 'docs', 'good-first-issue']
+              *Sample issue for practicing Copilot automated fixes on Microsoft Learn content*`,
+              labels: ['quest-sample', 'bug', 'content', 'good-first-issue']
             });
 
-      - name: Create Issue 4 - Feature Request
+      - name: Create Issue 4 - Feature Request for Copilot Content
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -139,28 +141,30 @@ jobs:
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: '[Quest Sample] Add dark mode to documentation',
+              title: '[Quest Sample] Add troubleshooting section to Copilot for Data Engineering module',
               body: `## Feature Request
               
               ### Problem
-              The documentation site is very bright and hard to read in low-light conditions.
+              The Copilot for Data Engineering module lacks a dedicated troubleshooting section. Learners frequently encounter issues but have no guidance in the module itself.
               
               ### Proposed Solution
-              Add a dark mode toggle to the documentation site.
+              Add a new unit "Troubleshoot common Copilot issues" to the \`get-started-copilot-fabric-data-engineering\` module.
               
-              ### Use Case
-              Developers often work in low-light environments and would benefit from a dark theme.
+              ### Suggested Content
+              - Common error messages and solutions
+              - Copilot not responding scenarios
+              - Context window limitations
+              - How to provide better prompts when Copilot gives incorrect suggestions
               
               ### Impact
-              Medium - would improve user experience for many users
+              High - would reduce support requests and improve learner experience
               
-              ### Alternatives Considered
-              - Letting users use browser extensions
-              - Not a good solution because not everyone knows about them
+              ### Module Location
+              \`learn-pr/wwl/get-started-copilot-fabric-data-engineering\`
               
               ---
-              *Sample feature request for Quest categorization practice*`,
-              labels: ['quest-sample', 'feature', 'enhancement']
+              *Sample feature request for Quest categorization practice with Microsoft Learn content*`,
+              labels: ['quest-sample', 'enhancement', 'content']
             });
 
       - name: Create Issue 5 - Duplicate of Issue 1
@@ -171,19 +175,19 @@ jobs:
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: '[Quest Sample] Cannot authenticate with API',
+              title: '[Quest Sample] Image not showing in lakehouse tutorial',
               body: `## Problem
-              I can't get authentication to work. Keep getting invalid key errors.
+              The architecture diagram in the lakehouse module is missing. I just see the alt text.
               
               ## Details
-              Using the API key from my account settings but it says invalid.
+              Going through the "Get started with lakehouses" module and the main architecture image doesn't load.
               
-              ## Environment
-              Windows 11, latest version
+              ## Location
+              The exploring lakehouses unit, about halfway down the page.
               
               ---
               *Sample duplicate issue - same as Issue #1. Practice finding duplicates with Copilot!*`,
-              labels: ['quest-sample', 'bug']
+              labels: ['quest-sample', 'bug', 'content']
             });
 
       - name: Create Issue 6 - Needs More Info
@@ -194,15 +198,15 @@ jobs:
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: "[Quest Sample] It doesn't work",
-              body: `When I try to use it, it doesn't work.
+              title: "[Quest Sample] The Fabric module is wrong",
+              body: `Something in the Fabric content is incorrect. I tried following the steps but it didn't work like it showed.
               
               ---
-              *Sample vague issue that needs more information. Practice requesting details!*`,
+              *Sample vague issue that needs more information. Practice requesting details with Copilot!*`,
               labels: ['quest-sample', 'needs-info']
             });
 
-      - name: Create Issue 7 - Missing Code Import
+      - name: Create Issue 7 - Inconsistent Copilot Terminology
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -210,36 +214,34 @@ jobs:
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: '[Quest Sample] Code example missing import statement',
+              title: '[Quest Sample] Inconsistent Copilot naming across modules',
               body: `## Issue Type
-              Documentation
+              Content Consistency
               
               ## Description
-              The code example in tutorials/api-guide.md doesn't work because it's missing an import.
+              Different modules use different terms for Copilot features, causing confusion for learners.
               
-              ## Location
-              \`tutorials/api-guide.md\` lines 45-52
+              ## Examples Found
+              - \`get-started-copilot-fabric-data-engineering\`: Uses "Copilot for Data Engineering"
+              - \`get-started-copilot-fabric-data-warehouse\`: Uses "Copilot in Data Warehouse"
+              - Some places use "Microsoft Copilot" while others use just "Copilot"
               
-              ## Problem
-              The example uses \`Client\` but doesn't import it:
+              ## Modules Affected
+              - \`learn-pr/wwl/get-started-copilot-fabric-data-engineering\`
+              - \`learn-pr/wwl/get-started-copilot-fabric-data-warehouse\`
+              - \`learn-pr/wwl/implement-fabric-data-agents\`
               
-              \`\`\`python
-              client = Client(api_key='your_key')
-              response = client.get_users()
-              \`\`\`
-              
-              ## Fix Needed
-              Add the import:
-              \`\`\`python
-              from techflow import Client
-              \`\`\`
+              ## Recommended Fix
+              Establish consistent terminology across all Fabric Copilot modules:
+              - "Copilot for Microsoft Fabric" (full name)
+              - "Copilot" (after first reference in each unit)
               
               ---
-              *Good candidate for automated fix with Copilot*`,
-              labels: ['quest-sample', 'docs', 'good-first-issue']
+              *Good candidate for bulk fix with Copilot across multiple files*`,
+              labels: ['quest-sample', 'content', 'consistency']
             });
 
-      - name: Create Issue 8 - Question
+      - name: Create Issue 8 - Question About Prerequisites
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -247,33 +249,212 @@ jobs:
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: '[Quest Sample] How do I configure automatic backups?',
+              title: '[Quest Sample] What are the prerequisites for data-science-fabric module?',
               body: `## Question
-              How do I configure TechFlow to automatically backup my data?
+              What exact prerequisites do learners need before starting the "Get started with data science in Microsoft Fabric" module?
               
-              ## What I've Tried
-              I looked through the documentation but couldn't find clear instructions.
+              ## Context
+              The module mentions needing a Fabric workspace but doesn't specify:
+              - What capacity/license is required?
+              - Do learners need an existing lakehouse?
+              - Is there sample data they should have ready?
+              
+              ## Module Location
+              \`learn-pr/wwl/get-started-data-science-fabric\`
               
               ## What I Need
-              Step-by-step guide for setting up automatic backups.
+              Clear list of prerequisites to add to the module introduction.
               
               ---
-              *Sample question issue - practice categorization*`,
-              labels: ['quest-sample', 'question']
+              *Sample question issue - practice categorization with Copilot on Learn content*`,
+              labels: ['quest-sample', 'question', 'content']
+            });
+
+      - name: Create Issue 9 - Code Sample Not Working
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '[Quest Sample] Python code sample in data science module throws error',
+              body: `## Issue Type
+              Content Bug - Code Sample
+              
+              ## Description
+              The Python code sample for loading data into a DataFrame doesn't work with the current version of the Fabric SDK.
+              
+              ## Location
+              - **Module**: \`learn-pr/wwl/get-started-data-science-fabric\`
+              - **Unit**: Unit 4 - Work with data
+              - **Code block**: Around line 45 in the includes markdown file
+              
+              ## Current Code
+              \`\`\`python
+              from fabric.data import load_table
+              df = load_table("lakehouse.sales_data")
+              \`\`\`
+              
+              ## Error Message
+              \`\`\`
+              ModuleNotFoundError: No module named 'fabric.data'
+              \`\`\`
+              
+              ## Expected Working Code
+              \`\`\`python
+              import pandas as pd
+              df = spark.read.table("sales_data").toPandas()
+              \`\`\`
+              
+              ## Environment
+              - Fabric workspace with Spark 3.4
+              - Python 3.10
+              
+              ---
+              *Sample code bug for practicing automated fixes with Copilot*`,
+              labels: ['quest-sample', 'bug', 'code-sample', 'good-first-issue']
+            });
+
+      - name: Create Issue 10 - Accessibility Issue
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '[Quest Sample] Images missing alt text in real-time dashboards module',
+              body: `## Issue Type
+              Accessibility
+              
+              ## Description
+              Several images in the real-time dashboards module are missing descriptive alt text, making the content inaccessible to screen reader users.
+              
+              ## Location
+              - **Module**: \`learn-pr/wwl/create-real-time-dashboards-microsoft-fabric\`
+              - **Affected Units**: Units 2, 3, and 5
+              
+              ## Images Missing Alt Text
+              1. \`dashboard-overview.png\` - shows empty alt=""
+              2. \`streaming-tile-config.png\` - missing alt attribute entirely
+              3. \`kql-query-results.png\` - alt="image" (not descriptive)
+              
+              ## Required Fix
+              Add meaningful alt text that describes:
+              - What the image shows
+              - Key information conveyed by the image
+              - Any text visible in screenshots
+              
+              ## Compliance
+              This is required for WCAG 2.1 Level AA compliance.
+              
+              ---
+              *Accessibility issues are high priority - practice fixing with Copilot*`,
+              labels: ['quest-sample', 'accessibility', 'content', 'high-priority']
+            });
+
+      - name: Create Issue 11 - Outdated UI Screenshot
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '[Quest Sample] UI screenshots show old Fabric interface',
+              body: `## Issue Type
+              Content Bug - Outdated Screenshots
+              
+              ## Description
+              The screenshots in the Kusto module show the old Fabric UI before the November 2024 update. The navigation and button layouts have changed significantly.
+              
+              ## Location
+              - **Module**: \`learn-pr/wwl/get-started-kusto-fabric\`
+              - **Units**: All units with screenshots
+              
+              ## Affected Screenshots
+              - \`create-kql-database.png\` - Create button moved to top ribbon
+              - \`query-editor.png\` - Editor has new copilot panel
+              - \`data-explorer-nav.png\` - Navigation pane redesigned
+              
+              ## Impact
+              Medium - Learners can still complete tasks but UI doesn't match screenshots, causing confusion.
+              
+              ## Recommended Action
+              Capture new screenshots using current Fabric UI (November 2024 or later)
+              
+              ---
+              *Sample issue for understanding documentation maintenance*`,
+              labels: ['quest-sample', 'content', 'media', 'needs-screenshot']
+            });
+
+      - name: Create Issue 12 - Missing YAML Validation
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '[Quest Sample] YAML validation error in purview module index',
+              body: `## Issue Type
+              Build Error
+              
+              ## Description
+              The index.yml file in the Purview governance module has a YAML syntax error causing build failures.
+              
+              ## Location
+              - **Module**: \`learn-pr/wwl/fabric-data-governance-purview\`
+              - **File**: \`index.yml\`
+              - **Line**: 23
+              
+              ## Error in Build Log
+              \`\`\`
+              YamlException: Mapping values are not allowed in this context
+                at line 23, column 15
+              \`\`\`
+              
+              ## Problem
+              Missing colon after key name on line 23.
+              
+              ## Current (Broken)
+              \`\`\`yaml
+              prerequisites
+                - Basic understanding of data governance
+              \`\`\`
+              
+              ## Should Be
+              \`\`\`yaml
+              prerequisites:
+                - Basic understanding of data governance
+              \`\`\`
+              
+              ---
+              *YAML errors are common - practice fixing with Copilot*`,
+              labels: ['quest-sample', 'bug', 'build-error', 'good-first-issue']
             });
 
       - name: Summary
         run: |
-          echo "✅ Created 8 sample issues for Quest Scenario 3"
-          echo "These issues demonstrate:"
-          echo "  - Bugs (real and duplicate)"
-          echo "  - Documentation issues (typos, broken links, missing examples)"
-          echo "  - Feature requests"
+          echo "✅ Created 12 sample issues for Quest Scenario 3"
+          echo "These issues demonstrate real Microsoft Learn content challenges:"
+          echo "  - Broken media/images in modules"
+          echo "  - Outdated metadata (ms.date)"
+          echo "  - Broken cross-reference links"
+          echo "  - Feature requests for new content"
+          echo "  - Duplicate issues"
           echo "  - Vague issues needing more info"
-          echo "  - Questions"
+          echo "  - Terminology inconsistencies"
+          echo "  - Questions about prerequisites"
+          echo "  - Non-working code samples"
+          echo "  - Accessibility issues (alt text)"
+          echo "  - Outdated UI screenshots"
+          echo "  - YAML validation errors"
           echo ""
           echo "Participants can now practice:"
           echo "  - Issue categorization with @workspace"
-          echo "  - Finding duplicates"
+          echo "  - Finding duplicates across Learn modules"
           echo "  - Automated fixes with Copilot"
-          echo "  - Template creation"
+          echo "  - Content consistency reviews"
+          echo "  - Accessibility compliance checks"

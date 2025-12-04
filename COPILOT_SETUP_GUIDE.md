@@ -221,25 +221,6 @@ Try these in Copilot Chat:
 - Open an issue: https://github.com/hrasheed-msft/github-repo-management-quest/issues
 - Check existing issues for solutions
 
-## Cost Information
-
-### Individual Plan
-- **Price:** $10/month or $100/year
-- **Free trial:** 30 days
-- **Includes:** All Copilot features
-
-### Business Plan (for organizations)
-- **Price:** $19/user/month
-- **Features:** All individual features + organization policies
-- **Admin controls:** Enable/disable for teams
-
-### Free Access
-- ✅ **Verified students** - Free while enrolled
-- ✅ **Verified teachers** - Free
-- ✅ **Popular open source maintainers** - Free
-
-Apply at: https://education.github.com/
-
 ## Next Steps
 
 Once Copilot is working:

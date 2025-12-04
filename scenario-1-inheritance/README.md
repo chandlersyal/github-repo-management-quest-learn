@@ -4,9 +4,9 @@
 
 It's Monday morning, and you've just received an urgent message from your manager:
 
-> "Hey! Sarah left the company unexpectedly last Friday, and we need you to take over the TechFlow documentation repository. It's critical for our product launch next month. The repository has been maintained by different people over the years, and honestly, we're not sure what state it's in. Can you do a quick assessment and let us know what we're working with? Thanks!"
+> "Hey! The team that was managing our Microsoft Learn content for Fabric and related technologies has been reorganized. We need you to take over the `learn-pr/wwl` documentation repository. It's critical content for our customers learning Microsoft Fabric, Intune, and DevOps. The repository has been maintained by different writers over the years, and honestly, we're not sure what state it's in. Can you do a quick assessment and let us know what we're working with? Thanks!"
 
-You navigate to the repository and see a mix of markdown files, some Python scripts, various guides, and tutorials. There's no clear organization, commit messages are inconsistent, and you have no idea what's outdated or current.
+You navigate to the repository and see dozens of module folders, each with YAML metadata files, markdown includes, and media assets. There's no single overview of all the content, and you have no idea which modules might have outdated information, broken links, or inconsistencies.
 
 **Your mission:** Understand what you've inherited, identify critical issues, and create an actionable plan to bring this repository up to standard.
 
@@ -26,44 +26,44 @@ By completing this scenario, you will:
 4. Establish documentation standards and guidelines
 5. Develop a systematic approach to repository takeover
 
-## The Challenge Repository
+## The Content Repository
 
-The `challenge-repo/` directory contains a realistic documentation repository with:
+The `learn-pr/wwl/` directory contains real Microsoft Learn training modules with:
 
-- **15+ markdown files** covering various topics
-- **Documentation scattered** across multiple directories
-- **Python utilities** for link checking and content validation
-- **Inconsistent formatting** and style
-- **Some broken links** and outdated references
-- **Missing or incomplete** documentation in places
-- **No clear contribution guidelines** or standards
+- **50+ module folders** covering Microsoft Fabric, Intune, DevOps, and more
+- **YAML metadata files** (index.yml, unit files) defining module structure
+- **Markdown includes** with actual learning content
+- **Media folders** containing images and diagrams
+- **Various authors and dates** requiring consistency review
+- **Cross-references** between modules that need validation
+- **Mixed content types** (tutorials, conceptual, exercises, knowledge checks)
 
 ## Your Tasks
 
 ### Task 1.1: Repository Exploration and Mapping (15 minutes)
 **File:** [tasks/task-1.1-explore.md](tasks/task-1.1-explore.md)
 
-Use AI to quickly understand the repository structure, content organization, and purpose of different files. Create a visual map or outline of what exists.
+Use AI to quickly understand the Microsoft Learn module structure, content organization, and purpose of different folders. Create a visual map or outline of what exists.
 
 **Key Questions to Answer:**
-- What types of documentation exist?
-- How is the content organized?
-- What are the main topics covered?
-- Are there any Python utilities? What do they do?
-- What's the overall documentation philosophy?
+- What types of learning modules exist (conceptual, tutorial, exercise)?
+- How are the modules organized by topic (Fabric, Intune, DevOps)?
+- What are the main product areas covered?
+- How is metadata structured in the YAML files?
+- What's the overall content architecture?
 
 ### Task 1.2: Content Quality Audit (15 minutes)
 **File:** [tasks/task-1.2-audit.md](tasks/task-1.2-audit.md)
 
-Identify specific quality issues including broken links, outdated content, formatting inconsistencies, and technical accuracy problems.
+Identify specific quality issues including outdated dates, inconsistent metadata, formatting issues, and technical accuracy problems.
 
 **What to Look For:**
-- Broken internal and external links
-- Outdated version numbers or deprecated features
-- Inconsistent heading styles
-- Missing images or assets
-- Incomplete sections or TODO markers
-- Contradictory information across files
+- Outdated `ms.date` values in YAML files
+- Inconsistent author metadata patterns
+- Missing or broken image references
+- Inconsistent heading styles across modules
+- Missing accessibility attributes
+- Modules with TODO markers or incomplete sections
 
 ### Task 1.3: Generate Audit Report (10 minutes)
 **File:** [tasks/task-1.3-report.md](tasks/task-1.3-report.md)
@@ -73,61 +73,66 @@ Create a comprehensive audit report summarizing your findings, prioritizing issu
 **Report Should Include:**
 - Executive summary
 - Issues categorized by severity (critical, high, medium, low)
-- Quantitative metrics (broken links count, files needing updates, etc.)
+- Quantitative metrics (modules by product, content freshness, etc.)
 - Prioritized action plan
 - Estimated effort for fixes
 
 ### Task 1.4: Documentation Standards Document (15 minutes)
 **File:** [tasks/task-1.4-standards.md](tasks/task-1.4-standards.md)
 
-Create or update a documentation standards file to prevent future quality issues and ensure consistency.
+Create or update a documentation standards file to ensure consistency across Microsoft Learn modules.
 
 **Standards Should Cover:**
-- Markdown formatting conventions
-- File naming and organization
-- Link checking requirements
-- Review and approval process
-- Style guide references
+- YAML metadata requirements and formatting
+- Markdown formatting conventions for Learn content
+- Image and media asset requirements
+- Module structure patterns
 - Accessibility requirements
+- Review and approval process
 
 ## How to Approach This Scenario
 
 ### Step 1: Set Up Your Environment
+
 ```bash
-cd scenario-1-inheritance/challenge-repo
-# Familiarize yourself with the repository structure
+cd learn-pr/wwl
+# Familiarize yourself with the module structure
 ls -R
 # Or use your file explorer
 ```
 
 ### Step 2: Use AI Strategically
-Don't try to manually read every file. Instead, use AI to:
-- Summarize large files quickly
-- Identify patterns across multiple files
-- Find specific issues (broken links, inconsistencies)
+
+Don't try to manually read every module. Instead, use AI to:
+- Summarize module structure and metadata patterns quickly
+- Identify patterns across multiple YAML and markdown files
+- Find specific issues (outdated dates, inconsistencies)
 - Generate reports from your findings
 
 ### Step 3: Work Through Tasks Sequentially
+
 Each task builds on the previous one. Follow the instructions in the task files.
 
 ### Step 4: Document Your Process
+
 Keep notes on:
 - What prompts worked well with your AI assistant
-- What patterns you discovered
+- What patterns you discovered across modules
 - What would you do differently next time
 
 ### Step 5: Check Solutions
+
 When you're done, review the solution guides to see alternative approaches and best practices.
 
 ## Success Criteria
 
 You've successfully completed this scenario when you can:
 
-- ✅ Explain the repository structure and content organization
-- ✅ Identify at least 10 specific quality issues
+- ✅ Explain the Microsoft Learn module structure and content organization
+- ✅ Identify at least 10 specific quality issues across the modules
 - ✅ Categorize issues by type and severity
 - ✅ Create a professional audit report
-- ✅ Draft comprehensive documentation standards
+- ✅ Draft comprehensive documentation standards for Learn content
 - ✅ Estimate effort required for remediation
 - ✅ Articulate a clear plan for repository improvement
 
@@ -138,7 +143,7 @@ You've successfully completed this scenario when you can:
 3. **Validate AI findings**: Spot-check AI recommendations for accuracy
 4. **Prioritize ruthlessly**: Focus on high-impact issues first
 5. **Be specific**: Vague findings aren't actionable
-6. **Consider the audience**: Who will use this documentation?
+6. **Consider the audience**: Who will use this documentation (learners, trainers)?
 
 ## Time Management
 
@@ -151,10 +156,11 @@ You've successfully completed this scenario when you can:
 ## What's Next?
 
 After completing this scenario, you'll be ready to:
+
 - Apply these exploration techniques to any unfamiliar repository
-- Conduct professional content audits
+- Conduct professional content audits on Microsoft Learn content
 - Establish quality standards for documentation teams
-- Move on to **Scenario 2: The Big Merge** where you'll review a complex PR
+- Move on to **Scenario 2: The Big Merge** where you'll review a complex PR updating Fabric modules
 
 ## Need Help?
 

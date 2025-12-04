@@ -10,12 +10,12 @@ Transform your quality audit findings (from Task 1.2) into a professional, actio
 
 ## Context
 
-You've completed a thorough audit with Copilot's help and have detailed findings. Now you need to communicate those findings to:
-- Your manager (who wants to know if the launch is at risk)
-- Your team (who needs to know what to fix)
-- Future contributors (who need to understand quality expectations)
+You've completed a thorough audit of the Microsoft Learn training modules with Copilot's help and have detailed findings. Now you need to communicate those findings to:
+- Your manager (who wants to know if the modules are ready for the Fabric launch)
+- Your team (who needs to know what content needs updates)
+- Future contributors (who need to understand Learn module quality expectations)
 
-GitHub Copilot can help you synthesize technical findings into clear business communications.
+GitHub Copilot can help you synthesize technical findings about YAML modules, `ms.date` values, and content accuracy into clear business communications.
 
 ## Setup
 
@@ -49,11 +49,11 @@ Format as markdown.
 
 **Follow-up Refinement:**
 ```
-Make this more concise and focus on launch readiness
+Make this more concise and focus on Microsoft Fabric module readiness
 ```
 
 ```
-Add specific timeline estimate for fixes
+Add specific timeline estimate for fixes considering Learn publishing cadence
 ```
 
 **Deliverable:** Create `audit-report.md` with Executive Summary section
@@ -90,17 +90,17 @@ For each category, list top 3-5 issues with:
 ```markdown
 ### 🔴 Launch Blockers (Must Fix)
 
-1. **Broken Installation Link** (installation.md:23)
-   - Impact: New users cannot install the product
-   - Affected: 100% of first-time users
+1. **Missing include file reference** (get-started-lakehouses/3-explore-lakehouse.yml:15)
+   - Impact: Learners see broken content in unit
+   - Affected: All users of lakehouses module
    - Fix time: 15 minutes
-   - Risk: HIGH - blocks core workflow
+   - Risk: HIGH - blocks learning path completion
 
-2. **Incorrect API Endpoints** (api-reference.md:67)
-   - Impact: Example code fails with 404 errors
-   - Affected: All developers following quick start
-   - Fix time: 1 hour (update + test)
-   - Risk: HIGH - breaks getting started experience
+2. **Outdated PySpark code in medallion module** (describe-medallion-architecture/includes/4-implement-bronze.md:67)
+   - Impact: Code examples fail in Fabric notebooks
+   - Affected: All developers following medallion tutorial
+   - Fix time: 1 hour (update + test in Fabric)
+   - Risk: HIGH - breaks hands-on exercise
 ```
 
 **Deliverable:** Add "Issues by Business Impact" section
@@ -243,12 +243,12 @@ Suggest improvements.
 Your `audit-report.md` should follow this structure (generated with Copilot):
 
 ```markdown
-# TechFlow Documentation Audit Report
+# Microsoft Learn Fabric Modules Audit Report
 
 **Created with:** GitHub Copilot @workspace
 **Date:** [Date]
 **Prepared By:** [Your Name]
-**Repository:** TechFlow Documentation
+**Repository:** learn-pr/wwl (Fabric Training Modules)
 **Audit Period:** [Date Range]
 
 ---
@@ -373,10 +373,10 @@ Your `audit-report.md` should follow this structure (generated with Copilot):
 [Copilot's pattern analysis]
 
 **Primary Issues Identified:**
-1. **Lack of automated link checking** → Broken links accumulated
-2. **No documentation standards** → Inconsistent formatting
-3. **Infrequent updates** → Outdated version references
-4. **No review process** → Quality issues went unnoticed
+1. **Inconsistent ms.date updates** → Content appears stale despite recent edits
+2. **No cross-module link validation** → Broken references between learning paths
+3. **Rapid Fabric feature evolution** → Code examples outdated by service updates
+4. **Missing module metadata** → Incomplete index.yml affecting discoverability
 
 ---
 
@@ -386,16 +386,16 @@ Your `audit-report.md` should follow this structure (generated with Copilot):
 
 ### High Priority Improvements
 
-1. **Implement Automated Link Checking**
-   - **What:** Add markdown-link-check to CI/CD pipeline
-   - **Why:** Prevents 80% of broken link issues
-   - **How:** [Copilot-generated steps]
+1. **Implement ms.date Freshness Checks**
+   - **What:** Add automated check for modules with ms.date > 6 months old
+   - **Why:** Ensures content appears current and accurate
+   - **How:** [Copilot-generated YAML parsing script]
    - **Impact:** High
    - **Effort:** Low (2 hours setup)
 
-2. **Establish Documentation Standards**
-   - **What:** Create DOCUMENTATION_STANDARDS.md with templates
-   - **Why:** Ensures consistency, easier reviews
+2. **Establish Learn Module Quality Standards**
+   - **What:** Create MODULE_STANDARDS.md with YAML validation rules
+   - **Why:** Ensures consistent module structure across all Fabric content
    - **How:** [Steps]
    - **Impact:** High
    - **Effort:** Medium (4 hours)

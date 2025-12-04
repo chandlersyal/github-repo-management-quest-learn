@@ -1,0 +1,15 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.create-real-time-dashboards-microsoft-fabric.real-time-dashboards-best-practices
+title: Dashboard management and optimization
+metadata:
+  title: Dashboard management and optimization
+  description: "Real-Time Dashboard best practices"
+  ms.date: 09/07/2025
+  author: theresa-i
+  ms.author: theresai
+  ms.topic: unit
+  ms.custom:
+  - N/A
+durationInMinutes: 10
+content: |
+  [!include[](includes/4-real-time-dashboards-best-practices.md)]

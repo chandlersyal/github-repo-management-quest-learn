@@ -1,0 +1,51 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.get-started-kusto-fabric.knowledge-check
+title: Module assessment
+metadata:
+  hidden_question_numbers: ["1A709C42_34","1A709C42_38","1A709C42_6","1A709C42_47","1A709C42_75","1A709C42_104","1A709C42_120","1A709C42_128","1A709C42_136"]
+  ai_generated_module_assessment: true
+  title: Module assessment
+  description: "Knowledge check"
+  ms.date: 09/10/2025
+  author: theresa-i
+  ms.author: theresai
+  ms.topic: unit
+  module_assessment: true
+durationInMinutes: 3
+quiz:
+  title: ""
+  questions:
+  - content: "Which Microsoft Fabric Real-Time Intelligence component should you use to ingest and transform a stream of real-time data?"
+    choices:
+    - content: "Eventhouse"
+      isCorrect: false
+      explanation: "Incorrect. An eventhouse is used to store real-time data in KQL databases."
+    - content: "Eventstream"
+      isCorrect: true
+      explanation: "Correct. An eventstream is used to ingest and transform real-time data."
+    - content: "Activator"
+      isCorrect: false
+      explanation: "Incorrect. Activator is used to automate actions based on events."
+  - content: "Which language is optimized for querying real-time data in an eventhouse?"
+    choices:
+    - content: "Python"
+      isCorrect: false
+      explanation: "Incorrect. Python isn't supported for querying tables in an eventhouse."
+    - content: "SQL"
+      isCorrect: false
+      explanation: "Incorrect. While SQL is supported in an eventhouse, it isn't as optimized for real-time data as another supported language."
+    - content: "KQL"
+      isCorrect: true
+      explanation: "Correct. KQL is the native language for databases in an eventstore and is optimized for handling real-time data."
+  - content: "Which Microsoft Fabric Real-Time Intelligence component is used to visualize and explore real-time data in tiles?"
+    choices:
+    - content: "Dataflows"
+      isCorrect: false
+      explanation: "Incorrect. Dataflows are used to ingest and process batch data, not to visualize real-time data in tiles."
+    - content: "Real-Time Dashboards"
+      isCorrect: true
+      explanation: "Correct. Real-Time Dashboards enable you to visualize and explore data in tiles based on KQL queries."
+    - content: "Delta tables"
+      isCorrect: false
+      explanation: "Incorrect. Delta tables are relational data structures used to store data in a lakehouse or data warehouse."
+  

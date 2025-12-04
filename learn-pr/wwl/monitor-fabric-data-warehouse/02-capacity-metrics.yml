@@ -1,0 +1,15 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.monitor-fabric-data-warehouse.capacity-metrics
+title: Monitor capacity metrics
+metadata:
+  title: Monitor capacity metrics
+  description: "Monitor capacity metrics"
+  ms.date: 06/13/2025
+  author: wwlpublish
+  ms.author: jupadrao
+  ms.topic: unit
+  ms.custom:
+  - N/A
+durationInMinutes: 5
+content: |
+  [!include[](includes/02-capacity-metrics.md)]

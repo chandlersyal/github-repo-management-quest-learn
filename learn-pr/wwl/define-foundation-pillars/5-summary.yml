@@ -1,0 +1,14 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.define-foundation-pillars.summary
+title: Summary
+metadata:
+  title: summary
+  description: "summary"
+  ms.date: 09/20/2020
+  author: wwlpublish
+  ms.author: sallybre
+  ms.topic: unit
+azureSandbox: false
+durationInMinutes: 2
+content: |
+  [!include[](includes/5-summary.md)]

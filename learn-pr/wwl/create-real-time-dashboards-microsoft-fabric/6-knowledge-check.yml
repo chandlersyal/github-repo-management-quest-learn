@@ -1,0 +1,53 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.create-real-time-dashboards-microsoft-fabric.knowledge-check
+title: Module assessment
+metadata:
+  hidden_question_numbers: ["2F0B032A_2","2F0B032A_26","2F0B032A_34","2F0B032A_38","2F0B032A_6","2F0B032A_51","2F0B032A_55","2F0B032A_63","2F0B032A_67","2F0B032A_75","2F0B032A_83","2F0B032A_87","2F0B032A_95","2F0B032A_104","2F0B032A_108","2F0B032A_120","2F0B032A_128","2F0B032A_140"]
+  module_assessment_regen_label: regen-1757542483821
+  ai_generated_module_assessment: true
+  title: Module assessment
+  description: "Knowledge check"
+  ms.date: 09/07/2025
+  author: theresa-i
+  ms.author: theresai
+  ms.topic: unit
+  ms.custom:
+  - N/A
+  module_assessment: true
+durationInMinutes: 3
+quiz:
+  title: "Check your knowledge"
+  questions:
+  - content: "What is a real-time dashboard?"
+    choices:
+    - content: "A Power BI report that is based on an Eventhouse."
+      isCorrect: false
+      explanation: "Incorrect. A real-time dashboard isn't a Power BI report."
+    - content: "A Real-Time Intelligence item that can display data from a real-time streaming source in Microsoft Fabric."
+      isCorrect: true
+      explanation: "Correct. A real-time dashboard displays real-time data in Microsoft Fabric."
+    - content: "A client-installed tool for monitoring eventstreams in Microsoft Fabric."
+      isCorrect: false
+      explanation: "Incorrect. A real-time dashboard isn't a client-side tool for monitoring an eventstream."
+  - content: "How can you enable users to filter a real-time dashboard interactively?"
+    choices:
+    - content: "Add a base query to the dashboard."
+      isCorrect: false
+      explanation: "Incorrect. A base query doesn't enable interactive filtering."
+    - content: "Add multiple pages to the dashboard."
+      isCorrect: false
+      explanation: "Incorrect. Pages don't inherently enable filtering."
+    - content: "Add parameters to the dashboard."
+      isCorrect: true
+      explanation: "Correct. Parameters enable users to filter data in real-time dashboards."
+  - content: "How can you ensure users always see fresh data in a real-time dashboard?"
+    choices:
+    - content: "Configure auto refresh for the dashboard."
+      isCorrect: true
+      explanation: "Correct. Auto refresh ensures the dashboard shows fresh data."
+    - content: "Use the pass-through identity option for the dashboard data source."
+      isCorrect: false
+      explanation: "Incorrect. Pass-through identity doesn't automatically ensure data freshness."
+    - content: "Use a SQL query instead of KQL."
+      isCorrect: false
+      explanation: "Incorrect. Real-time dashboards are based on KQL queries. Using SQL doesn't ensure data freshness."

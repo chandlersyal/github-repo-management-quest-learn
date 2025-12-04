@@ -1,0 +1,15 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.create-real-time-dashboards-microsoft-fabric.advanced-features
+title: Organize and filter dashboard data
+metadata:
+  title: Organize and filter dashboard data
+  description: "Organize and filter dashboard data"
+  ms.date: 09/07/2025
+  author: theresa-i
+  ms.author: theresai
+  ms.topic: unit
+  ms.custom:
+  - N/A
+durationInMinutes: 10
+content: |
+  [!include[](includes/3-advanced-features.md)]
