@@ -297,7 +297,7 @@ jobs:
         env:
           BRANCH_NAME: ${{ env.BRANCH_NAME }}
         with:
-          github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const branchName = process.env.BRANCH_NAME;
 
