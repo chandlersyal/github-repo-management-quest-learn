@@ -116,6 +116,17 @@ This quest uses **real Microsoft Learn modules** in the `learn-pr/wwl/` folder a
 
    ![Issues and Pull Requests tabs location](media/issues_PR_location.png)
 
+## Keeping Your Fork Up to Date
+
+If you forked this repository, keep it synced with the latest changes:
+
+1. Navigate to **your fork** on GitHub.com
+2. Look for the banner that says "This branch is X commits behind..."
+3. Click **Sync fork** → **Update branch**
+4. Pull the changes to your local clone (in VS Code terminal or Git client)
+
+> **💡 Tip:** GitHub will show a notification banner when your fork falls behind the original repository. Sync regularly to get the latest content and fixes.
+
 ## Next Steps
 
 Ready to begin?
