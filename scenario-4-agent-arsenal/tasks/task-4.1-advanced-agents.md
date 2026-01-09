@@ -125,14 +125,7 @@ Try both agents on the same content:
 
 Different models excel at different tasks. Use `model:` to match the right model to the job.
 
-### Model Capabilities
-
-| Model | Best For | Trade-offs |
-|-------|----------|------------|
-| `GPT-4o` | Fast responses, code generation | Default, good all-around |
-| `Claude Sonnet 4` | Complex analysis, nuanced writing | Excellent reasoning |
-| `o1` | Deep reasoning, complex problems | Slower, more expensive |
-| `o1-mini` | Reasoning with faster response | Good balance |
+See [Model comparison](https://docs.github.com/en/copilot/reference/ai-models/model-comparison) for more information.
 
 ### Exercise: Create a Deep Analysis Agent
 
