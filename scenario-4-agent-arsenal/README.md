@@ -30,11 +30,8 @@ Your organization is scaling rapidly, and you need to establish automated workfl
 
 By completing this scenario, you will:
 
-1. **Use Copilot Coding Agent** - Assign issues directly to Copilot for automated implementation
-2. **Configure native code review** - Set up automatic Copilot reviews with custom instructions
-3. **Create custom instructions** - Tailor Copilot's behavior to your repository's needs
-4. **Build specialized agents** - Extend native features when built-in options aren't enough
-5. **Design agent workflows** - Combine native and custom agents for comprehensive analysis
+1. **Build specialized agents** - Extend native features when built-in options aren't enough
+1. **Design agent workflows** - Combine native and custom agents for comprehensive analysis
 
 ## Real-World Context
 
