@@ -75,8 +75,8 @@ Summarize formatting issues found.
 ---
 
 ### Step 5: Create Issue Summary
-
-Add a "Detailed Review Findings" section to your `pr-review.md`:
+```
+#pr Add a "Detailed Review Findings" section to your `pr-review.md`:
 
 | Category | Issues Found | Severity | Notes |
 |----------|--------------|----------|-------|
@@ -84,7 +84,7 @@ Add a "Detailed Review Findings" section to your `pr-review.md`:
 | Broken Links | | | |
 | Code Examples | | | |
 | Formatting | | | |
-
+```
 ---
 
 ## Success Criteria
