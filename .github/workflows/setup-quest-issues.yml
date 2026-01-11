@@ -292,8 +292,9 @@ jobs:
               
               ## Current Code
               \`\`\`python
-              from fabric.data import load_table
-              df = load_table("lakehouse.sales_data")
+              import pandas as pd
+              df = spark.read.table("sales_data").toPandas()
+
               \`\`\`
               
               ## Error Message
